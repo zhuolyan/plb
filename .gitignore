@@ -1,0 +1,60 @@
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --- JetBrains (IDE) ---
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+*.idea
+
+# --- PHP ---
+vendor/
+composer.phar
+.phpbench.cache/
+.phpunit.result.cache
+.php_cs.cache
+*.log
+
+# --- JavaScript / Node.js ---
+node_modules/
+dist/
+build/
+npm-debug.log
+yarn-error.log
+.eslintcache
+
+# --- C# / .NET ---
+bin/
+obj/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+BenchmarkDotNet.Artifacts/
+
+# --- Java / Maven ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+.settings/
+.project
+.classpath
+.metadata/
+dependency-reduced-pom.xml
+
+# --- OS / Environment Specific ---
+.env
+.env.local
+.DS_Store
