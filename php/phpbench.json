@@ -35,10 +35,9 @@
       }
     }
   },
-  "runner.progress": "dots",
   "runner.executor": "custom",
   "runner.format": "csv",
-  "runner.revs": 1000,
+  "runner.warmup": 1000,
   "runner.time_unit": "microseconds",
   "runner.attributes": true,
   "expression.memory_unit_prefix": "binary"

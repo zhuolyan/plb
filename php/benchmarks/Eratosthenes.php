@@ -4,44 +4,132 @@ namespace App\Benchmarks;
 
 use App\Eratosthenes\ArraySieve;
 use App\Eratosthenes\SplSieve;
+use PhpBench\Attributes\Groups;
+use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
-use PhpBench\Attributes\Warmup;
 
 class Eratosthenes
 {
-    #[ParamProviders('sieveProvider')]
-    public function benchColdArraySieve(array $size): void
+    use DataProviderTrait;
+
+    #[Iterations(10)]
+    #[Groups(["small", "eratosthenes"])]
+    #[ParamProviders('easyDataProvider')]
+    public function benchColdArraySieveEasy(array $params): void
     {
-        new ArraySieve($size['size'])->sieve();
+        $this->arraySieve($params);
     }
 
-    #[ParamProviders('sieveProvider')]
-    public function benchColdSplSieve(array $size): void
+    #[Iterations(10)]
+    #[Groups(["small", "eratosthenes"])]
+    #[ParamProviders('easyDataProvider')]
+    public function benchColdSplSieveEasy(array $params): void
     {
-        new SplSieve($size['size'])->sieve();
+        $this->splSieve($params);
     }
 
-    #[Warmup(5_000)]
-    #[ParamProviders('sieveProvider')]
-    public function benchWarmArraySieve(array $size): void
+    #[Iterations(10)]
+    #[Groups(["small", "eratosthenes"])]
+    #[ParamProviders('easyDataProvider')]
+    public function benchWarmArraySieveEasy(array $params): void
     {
-        new ArraySieve($size['size'])->sieve();
+        $this->arraySieve($params);
     }
 
-    #[Warmup(5_000)]
-    #[ParamProviders('sieveProvider')]
-    public function benchWarmSplSieve(array $params): void
+    #[Iterations(10)]
+    #[Groups(["small", "eratosthenes"])]
+    #[ParamProviders('easyDataProvider')]
+    public function benchWarmSplSieveEasy(array $params): void
     {
-        new SplSieve(0)->sieve();
+        $this->splSieve($params);
     }
 
-    public function sieveProvider(): array
+    #[Iterations(10)]
+    #[Groups(["middle", "eratosthenes"])]
+    #[ParamProviders('middleDataProvider')]
+    public function benchColdArraySieveMiddle(array $params): void
     {
-        $result = [];
-        for ($i = 1_000; $i <= 1_000_000_000; $i += 1_000) {
-            $result[] = ['size' => $i];
-        }
+        $this->arraySieve($params);
+    }
 
-        return $result;
+    #[Iterations(10)]
+    #[Groups(["middle", "eratosthenes"])]
+    #[ParamProviders('middleDataProvider')]
+    public function benchColdSplSieveMiddle(array $params): void
+    {
+        $this->splSieve($params);
+    }
+
+    #[Iterations(10)]
+    #[Groups(["middle", "eratosthenes"])]
+    #[ParamProviders('middleDataProvider')]
+    public function benchWarmArraySieveMiddle(array $params): void
+    {
+        $this->arraySieve($params);
+    }
+
+    #[Iterations(10)]
+    #[Groups(["middle", "eratosthenes"])]
+    #[ParamProviders('middleDataProvider')]
+    public function benchWarmSplSieveMiddle(array $params): void
+    {
+        $this->splSieve($params);
+    }
+
+    #[Iterations(10)]
+    #[Groups(["hard", "eratosthenes"])]
+    #[ParamProviders('hardDataProvider')]
+    public function benchColdArraySieveHard(array $params): void
+    {
+        $this->arraySieve($params);
+    }
+
+    #[Iterations(10)]
+    #[Groups(["hard", "eratosthenes"])]
+    #[ParamProviders('hardDataProvider')]
+    public function benchColdSplSieveHard(array $params): void
+    {
+        $this->splSieve($params);
+    }
+
+    #[Iterations(10)]
+    #[Groups(["hard", "eratosthenes"])]
+    #[ParamProviders('hardDataProvider')]
+    public function benchWarmArraySieveHard(array $params): void
+    {
+        $this->arraySieve($params);
+    }
+
+    #[Iterations(10)]
+    #[Groups(["hard", "eratosthenes"])]
+    #[ParamProviders('hardDataProvider')]
+    public function benchWarmSplSieveHard(array $params): void
+    {
+        $this->splSieve($params);
+    }
+
+    public function easyDataProvider(): array
+    {
+        return $this->dataProvider(10, 60_000, 10);
+    }
+
+    public function middleDataProvider(): array
+    {
+        return $this->dataProvider(60_010, 8_200_000, 20_000);
+    }
+
+    public function hardDataProvider(): array
+    {
+        return $this->dataProvider(8_200_000, 1_000_000_000, 2_000_000);
+    }
+
+    private function splSieve(array $params): void
+    {
+        new SplSieve($params['size'])->sieve();
+    }
+
+    private function arraySieve(array $params): void
+    {
+        new ArraySieve($params['size'])->sieve();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Eratosthenes;
-trait Sieve
+trait SieveTrait
 {
     protected int $size;
 

@@ -6,7 +6,7 @@ use SplFixedArray;
 
 class SplSieve
 {
-    use Sieve;
+    use SieveTrait;
 
     protected SplFixedArray $isPrime;
 

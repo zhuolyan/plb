@@ -4,7 +4,7 @@ namespace App\Eratosthenes;
 
 class ArraySieve
 {
-    use Sieve;
+    use SieveTrait;
 
     protected array $isPrime;
 

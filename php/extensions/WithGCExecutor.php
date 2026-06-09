@@ -3,11 +3,6 @@
 namespace Extensions;
 
 use PhpBench\Executor\Benchmark\TemplateExecutor;
-use PhpBench\Executor\ExecutionContext;
-use PhpBench\Executor\ExecutionResults;
-use PhpBench\Model\Result\MemoryResult;
-use PhpBench\Model\Result\TimeResult;
-use PhpBench\Registry\Config;
 use PhpBench\Remote\Launcher;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,13 +19,5 @@ class WithGCExecutor extends TemplateExecutor
         $options->setDefaults([
                                   self::OPTION_SAFE_PARAMETERS => true,
                               ]);
-    }
-
-    public function execute(ExecutionContext $context, Config $config): ExecutionResults
-    {
-        return ExecutionResults::fromResults(
-            TimeResult::fromArray([]),
-            MemoryResult::fromArray([])
-        );
     }
 }
