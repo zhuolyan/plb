@@ -1,0 +1,45 @@
+{
+  "$schema": "./vendor/phpbench/phpbench/phpbench.schema.json",
+  "core.extensions": [
+    "\\Extensions\\WithGCExtension"
+  ],
+  "runner.bootstrap": "vendor/autoload.php",
+  "runner.path": "benchmarks",
+  "report.outputs": {
+    "custom": {
+      "extends": "delimited",
+      "delimiter": ",",
+      "file": "results.csv"
+    }
+  },
+  "report.generators": {
+    "custom": {
+      "generator": "expression",
+      "cols": [
+        "benchmark",
+        "subject",
+        "set",
+        "revs",
+        "mem_peak",
+        "mem_real",
+        "mem_final",
+        "mode",
+        "best",
+        "mean",
+        "worst",
+        "rstdev"
+      ],
+      "expressions": {
+        "mem_real": "result_mem_real[0] as memory",
+        "mem_final": "result_mem_final[0] as memory"
+      }
+    }
+  },
+  "runner.progress": "dots",
+  "runner.executor": "custom",
+  "runner.format": "csv",
+  "runner.revs": 1000,
+  "runner.time_unit": "microseconds",
+  "runner.attributes": true,
+  "expression.memory_unit_prefix": "binary"
+}
