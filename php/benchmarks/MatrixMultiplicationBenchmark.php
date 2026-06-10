@@ -7,8 +7,9 @@ use App\Matrix\SplMatrix;
 use PhpBench\Attributes\Groups;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
+use PhpBench\Attributes\Warmup;
 
-class MatrixMultiplication
+class MatrixMultiplicationBenchmark
 {
     use DataProviderTrait;
 
@@ -29,6 +30,7 @@ class MatrixMultiplication
     }
 
     #[Iterations(10)]
+    #[Warmup(1_000)]
     #[Groups(["easy", "matrix-multiplication"])]
     #[ParamProviders('easyDataProvider')]
     public function benchWarmArrayMatrixMultiplicationEasy(array $params): void
@@ -37,6 +39,7 @@ class MatrixMultiplication
     }
 
     #[Iterations(10)]
+    #[Warmup(1_000)]
     #[Groups(["easy", "matrix-multiplication"])]
     #[ParamProviders('easyDataProvider')]
     public function benchWarmSplMatrixMultiplicationEasy(array $params): void
@@ -61,6 +64,7 @@ class MatrixMultiplication
     }
 
     #[Iterations(10)]
+    #[Warmup(1_000)]
     #[Groups(["middle", "matrix-multiplication"])]
     #[ParamProviders('middleDataProvider')]
     public function benchWarmArrayMatrixMultiplicationMiddle(array $params): void
@@ -69,6 +73,7 @@ class MatrixMultiplication
     }
 
     #[Iterations(10)]
+    #[Warmup(1_000)]
     #[Groups(["middle", "matrix-multiplication"])]
     #[ParamProviders('middleDataProvider')]
     public function benchWarmSplMatrixMultiplicationMiddle(array $params): void
@@ -93,6 +98,7 @@ class MatrixMultiplication
     }
 
     #[Iterations(10)]
+    #[Warmup(1_000)]
     #[Groups(["hard", "matrix-multiplication"])]
     #[ParamProviders('hardDataProvider')]
     public function benchWarmArrayMatrixMultiplicationHard(array $params): void
@@ -101,6 +107,7 @@ class MatrixMultiplication
     }
 
     #[Iterations(10)]
+    #[Warmup(1_000)]
     #[Groups(["ultimate", "matrix-multiplication"])]
     #[ParamProviders('hardDataProvider')]
     public function benchWarmSplMatrixMultiplicationHard(array $params): void
@@ -125,6 +132,7 @@ class MatrixMultiplication
     }
 
     #[Iterations(10)]
+    #[Warmup(1_000)]
     #[Groups(["ultimate", "matrix-multiplication"])]
     #[ParamProviders('ultimateDataProvider')]
     public function benchWarmArrayMatrixMultiplicationUltimate(array $params): void
@@ -133,6 +141,7 @@ class MatrixMultiplication
     }
 
     #[Iterations(10)]
+    #[Warmup(1_000)]
     #[Groups(["ultimate", "matrix-multiplication"])]
     #[ParamProviders('ultimateDataProvider')]
     public function benchWarmSplMatrixMultiplicationUltimate(array $params): void
@@ -142,22 +151,22 @@ class MatrixMultiplication
 
     public function easyDataProvider(): array
     {
-        return $this->dataProvider(2, 80);
+        return $this->dataProvider('size', 2, 80);
     }
 
     public function middleDataProvider(): array
     {
-        return $this->dataProvider(80, 160);
+        return $this->dataProvider('size', 80, 160);
     }
 
     public function hardDataProvider(): array
     {
-        return $this->dataProvider(160, 530, 10);
+        return $this->dataProvider('size', 160, 530, 10);
     }
 
     public function ultimateDataProvider(): array
     {
-        return $this->dataProvider(1_000, 5_000, 1_000);
+        return $this->dataProvider('size', 1_000, 5_000, 1_000);
     }
 
     private function arrayMatrixMultiplication(array $params): void
