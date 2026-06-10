@@ -5,112 +5,50 @@ namespace App\Benchmarks;
 use App\Eratosthenes\ArraySieve;
 use App\Eratosthenes\SplSieve;
 use PhpBench\Attributes\Groups;
-use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
-use PhpBench\Attributes\Warmup;
 
 class EratosthenesBenchmark
 {
     use DataProviderTrait;
 
-    #[Iterations(10)]
     #[Groups(["easy", "eratosthenes"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchColdArraySieveEasy(array $params): void
+    public function benchArraySieveEasy(array $params): void
     {
         $this->arraySieve($params);
     }
 
-    #[Iterations(10)]
     #[Groups(["easy", "eratosthenes"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchColdSplSieveEasy(array $params): void
+    public function benchSplSieveEasy(array $params): void
     {
         $this->splSieve($params);
     }
 
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["easy", "eratosthenes"])]
-    #[ParamProviders('easyDataProvider')]
-    public function benchWarmArraySieveEasy(array $params): void
-    {
-        $this->arraySieve($params);
-    }
-
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["easy", "eratosthenes"])]
-    #[ParamProviders('easyDataProvider')]
-    public function benchWarmSplSieveEasy(array $params): void
-    {
-        $this->splSieve($params);
-    }
-
-    #[Iterations(10)]
     #[Groups(["middle", "eratosthenes"])]
     #[ParamProviders('middleDataProvider')]
-    public function benchColdArraySieveMiddle(array $params): void
+    public function benchArraySieveMiddle(array $params): void
     {
         $this->arraySieve($params);
     }
 
-    #[Iterations(10)]
     #[Groups(["middle", "eratosthenes"])]
     #[ParamProviders('middleDataProvider')]
-    public function benchColdSplSieveMiddle(array $params): void
+    public function benchSplSieveMiddle(array $params): void
     {
         $this->splSieve($params);
     }
 
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["middle", "eratosthenes"])]
-    #[ParamProviders('middleDataProvider')]
-    public function benchWarmArraySieveMiddle(array $params): void
+    #[Groups(["hard", "eratosthenes"])]
+    #[ParamProviders('hardDataProvider')]
+    public function benchArraySieveHard(array $params): void
     {
         $this->arraySieve($params);
     }
 
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["middle", "eratosthenes"])]
-    #[ParamProviders('middleDataProvider')]
-    public function benchWarmSplSieveMiddle(array $params): void
-    {
-        $this->splSieve($params);
-    }
-
-    #[Iterations(10)]
     #[Groups(["hard", "eratosthenes"])]
     #[ParamProviders('hardDataProvider')]
-    public function benchColdArraySieveHard(array $params): void
-    {
-        $this->arraySieve($params);
-    }
-
-    #[Iterations(10)]
-    #[Groups(["hard", "eratosthenes"])]
-    #[ParamProviders('hardDataProvider')]
-    public function benchColdSplSieveHard(array $params): void
-    {
-        $this->splSieve($params);
-    }
-
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["hard", "eratosthenes"])]
-    #[ParamProviders('hardDataProvider')]
-    public function benchWarmArraySieveHard(array $params): void
-    {
-        $this->arraySieve($params);
-    }
-
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["hard", "eratosthenes"])]
-    #[ParamProviders('hardDataProvider')]
-    public function benchWarmSplSieveHard(array $params): void
+    public function benchSplSieveHard(array $params): void
     {
         $this->splSieve($params);
     }

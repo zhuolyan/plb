@@ -1,10 +1,10 @@
 {
-  "name": "js",
+  "name": "zhulyan-plb",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cross-language algorithmic performance testing suite (PHP, C#, Java, Node.js).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bench": "node index.js"
   },
-  "private": true
+  "private": false
 }
