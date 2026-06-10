@@ -10,7 +10,8 @@
     }
   ],
   "require": {
-    "php": "^8.5"
+    "php": "^8.5",
+    "halaxa/json-machine": "^1.2"
   },
   "autoload": {
     "psr-4": {

@@ -61,3 +61,4 @@ dependency-reduced-pom.xml
 
 #-- results files --
 results.csv
+json-normalized.json
