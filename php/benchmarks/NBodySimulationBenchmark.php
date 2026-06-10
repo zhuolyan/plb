@@ -5,7 +5,9 @@ namespace App\Benchmarks;
 use App\NBodySimulation\ArrayNBodySimulation;
 use App\NBodySimulation\SplNBodySimulation;
 use PhpBench\Attributes\Groups;
+use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
+use PhpBench\Attributes\Warmup;
 use SplFixedArray;
 
 class NBodySimulationBenchmark
@@ -15,30 +17,70 @@ class NBodySimulationBenchmark
     private array         $array_result = [];
     private SplFixedArray $spl_result;
 
+    #[Iterations(10)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchArraySimulationMiddle(array $params): void
+    public function benchColdArraySimulationMiddle(array $params): void
     {
         $this->arraySimulation($params);
     }
 
+    #[Iterations(10)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchSplSimulationMiddle(array $params): void
+    public function benchColdSplSimulationMiddle(array $params): void
     {
         $this->splSimulation($params);
     }
 
-    #[Groups(["hard", "n-body-simulation"])]
-    #[ParamProviders('hardProvider')]
-    public function benchArraySimulationHard(array $params): void
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["easy", "n-body-simulation"])]
+    #[ParamProviders('middleProvider')]
+    public function benchWarmArraySimulationMiddle(array $params): void
     {
         $this->arraySimulation($params);
     }
 
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["easy", "n-body-simulation"])]
+    #[ParamProviders('middleProvider')]
+    public function benchWarmSplSimulationMiddle(array $params): void
+    {
+        $this->splSimulation($params);
+    }
+
+    #[Iterations(10)]
     #[Groups(["hard", "n-body-simulation"])]
     #[ParamProviders('hardProvider')]
-    public function benchSplSimulationHard(array $params): void
+    public function benchColdArraySimulationHard(array $params): void
+    {
+        $this->arraySimulation($params);
+    }
+
+    #[Iterations(10)]
+    #[Groups(["hard", "n-body-simulation"])]
+    #[ParamProviders('hardProvider')]
+    public function benchColdSplSimulationHard(array $params): void
+    {
+        $this->splSimulation($params);
+    }
+
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["hard", "n-body-simulation"])]
+    #[ParamProviders('hardProvider')]
+    public function benchWarmArraySimulationHard(array $params): void
+    {
+        $this->arraySimulation($params);
+    }
+
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["hard", "n-body-simulation"])]
+    #[ParamProviders('hardProvider')]
+    public function benchWarmSplSimulationHard(array $params): void
     {
         $this->splSimulation($params);
     }

@@ -37,8 +37,6 @@
   },
   "runner.executor": "custom",
   "runner.format": "csv",
-  "runner.revs": 1000,
-  "runner.iterations": 10,
   "runner.time_unit": "microseconds",
   "runner.attributes": true,
   "expression.memory_unit_prefix": "binary"

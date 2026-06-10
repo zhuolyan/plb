@@ -4,23 +4,45 @@ namespace App\Benchmarks;
 
 use App\PiMonteCarlo\PiMonteCarlo;
 use PhpBench\Attributes\Groups;
+use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
+use PhpBench\Attributes\Warmup;
 
 class PiMonteCarloBenchmark
 {
     public float $pi = 0.0;
     use DataProviderTrait;
 
+    #[Iterations(10)]
     #[Groups(["easy", "pi-monte-carlo"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchPiMonteCarloEasy(array $params): void
+    public function benchColdPiMonteCarloEasy(array $params): void
     {
         $this->pi = PiMonteCarlo::calculate($params);
     }
 
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["easy", "pi-monte-carlo"])]
+    #[ParamProviders('easyDataProvider')]
+    public function benchWarmPiMonteCarloEasy(array $params): void
+    {
+        $this->pi = PiMonteCarlo::calculate($params);
+    }
+
+    #[Iterations(10)]
     #[Groups(["middle", "pi-monte-carlo"])]
     #[ParamProviders('midletDataProvider')]
-    public function benchPiMonteCarloMiddle(array $params): void
+    public function benchColdPiMonteCarloMiddle(array $params): void
+    {
+        $this->pi = PiMonteCarlo::calculate($params);
+    }
+
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["middle", "pi-monte-carlo"])]
+    #[ParamProviders('midletDataProvider')]
+    public function benchWarmPiMonteCarloMiddle(array $params): void
     {
         $this->pi = PiMonteCarlo::calculate($params);
     }
