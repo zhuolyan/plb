@@ -88,6 +88,6 @@ class GCNightmareBenchmark
 
     public function defaultDataProvider(): array
     {
-        return $this->dataProvider('size', 1_000, 1_000_000, 1_000);
+        return $this->dataProvider('size', 10_000, 10_000_000, 10_000);
     }
 }
