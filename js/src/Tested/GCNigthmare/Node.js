@@ -1,11 +1,13 @@
-export class Node {
+export class Node
+{
     left;
     right;
     self;
 
-    constructor() {
-        this.left = null;
+    constructor()
+    {
+        this.left  = null;
         this.right = null;
-        this.self = this;
+        this.self  = this;
     }
 }

@@ -13,6 +13,7 @@ export class FixedNBodiesSimulation
         this.bodies     = new Array(this._BODY_COUNT);
         this.init();
     }
+
     run()
     {
         this.simulate();

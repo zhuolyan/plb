@@ -7,6 +7,16 @@ export class NBodiesSimulationBenchmark
     fixedResult   = [];
     dynamicResult = [];
 
+    static hardProvider()
+    {
+        return dataProvider(144_000, 1_584_000, 144_000);
+    }
+
+    static middleProvider()
+    {
+        return dataProvider(240, 144_000, 240);
+    }
+
     benchColdDynamicSimulationMiddle(size)
     {
         this.dynamicSimulation(size);
@@ -45,16 +55,6 @@ export class NBodiesSimulationBenchmark
     benchWarmFixedSimulationHard(size)
     {
         this.fixedSimulation(size);
-    }
-
-    static hardProvider()
-    {
-        return dataProvider(144_000, 1_584_000, 144_000);
-    }
-
-    static middleProvider()
-    {
-        return dataProvider(240, 144_000, 144_000);
     }
 
     dynamicSimulation(size)

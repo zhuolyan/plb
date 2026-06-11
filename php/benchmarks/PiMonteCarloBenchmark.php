@@ -2,7 +2,6 @@
 
 namespace App\Benchmarks;
 
-use App\PiMonteCarlo\PiMonteCarlo;
 use PhpBench\Attributes\Groups;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
@@ -18,7 +17,7 @@ class PiMonteCarloBenchmark
     #[ParamProviders('easyDataProvider')]
     public function benchColdPiMonteCarloEasy(array $params): void
     {
-        $this->pi = PiMonteCarlo::calculate($params);
+        $this->pi = $this->calculate($params);
     }
 
     #[Iterations(10)]
@@ -27,7 +26,7 @@ class PiMonteCarloBenchmark
     #[ParamProviders('easyDataProvider')]
     public function benchWarmPiMonteCarloEasy(array $params): void
     {
-        $this->pi = PiMonteCarlo::calculate($params);
+        $this->pi = $this->calculate($params);
     }
 
     #[Iterations(10)]
@@ -35,7 +34,7 @@ class PiMonteCarloBenchmark
     #[ParamProviders('midletDataProvider')]
     public function benchColdPiMonteCarloMiddle(array $params): void
     {
-        $this->pi = PiMonteCarlo::calculate($params);
+        $this->pi = $this->calculate($params);
     }
 
     #[Iterations(10)]
@@ -44,7 +43,7 @@ class PiMonteCarloBenchmark
     #[ParamProviders('midletDataProvider')]
     public function benchWarmPiMonteCarloMiddle(array $params): void
     {
-        $this->pi = PiMonteCarlo::calculate($params);
+        $this->pi = $this->calculate($params);
     }
 
     public function easyDataProvider(): array
@@ -55,5 +54,20 @@ class PiMonteCarloBenchmark
     public function midletDataProvider(): array
     {
         return $this->dataProvider(1_000_000, 1_000_000_000, 1_000_000);
+    }
+
+    private function calculate($params): float
+    {
+        $inside = 0;
+        $size   = $params['size'];
+        for ($i = 0; $i < $size; $i++) {
+            $x = mt_rand() / mt_getrandmax();
+            $y = mt_rand() / mt_getrandmax();
+            if (($x * $x + $y * $y) <= 1.0) {
+                $inside++;
+            }
+        }
+
+        return 4 * ($inside / $size);
     }
 }

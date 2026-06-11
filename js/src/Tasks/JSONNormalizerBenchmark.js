@@ -1,7 +1,8 @@
 import {FullLoadNormalizer} from "../Tested/JSONKeyNormalizer/FullLoadNormalizer.js";
 import {ReadFromStreamNormalizer} from "../Tested/JSONKeyNormalizer/ReadFromStreamNormalizer.js";
 
-export class JSONNormalizerBenchmark  {
+export class JSONNormalizerBenchmark
+{
     benchColdFullLoad()
     {
         new FullLoadNormalizer().run();

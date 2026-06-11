@@ -2,8 +2,7 @@ export const MatrixMultiplicationMixin = {
     getRandomInt(min, max)
     {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    },
-    multiplication(another)
+    }, multiplication(another)
     {
         const result = new this.constructor(this.size, false);
 

@@ -3,6 +3,7 @@ import {EratosthenesBenchmark} from "./src/Tasks/EratosthenesBenchmark.js";
 import {GCNightmareBenchmark} from "./src/Tasks/GCNightmareBenchmark.js";
 import {MatrixMultiplicationBenchmark} from "./src/Tasks/MatrixMultiplicationBenchmark.js";
 import {NBodiesSimulationBenchmark} from "./src/Tasks/NBodiesSimulationBenchmark.js";
+import {PiMonteCarloBenchmark} from "./src/Tasks/PiMonteCarloBenchmark.js";
 
 const runner = new BenchmarkRunner('./default.template', './runner.js', './results.csv');
 
@@ -217,3 +218,11 @@ runner.run(
     10,
     NBodiesSimulationBenchmark.hardProvider
 );
+
+// Calculate Pi Monte-Carlo method
+//easy
+runner.run("PiMonteCarloBenchmark", "benchColdPiMonteCarloEasy", 0, 10, PiMonteCarloBenchmark.easyDataProvider);
+runner.run("PiMonteCarloBenchmark", "benchWarmPiMonteCarloEasy", 1_000, 10, PiMonteCarloBenchmark.easyDataProvider);
+//middle
+runner.run("PiMonteCarloBenchmark", "benchColdPiMonteCarloMiddle", 0, 10, PiMonteCarloBenchmark.midletDataProvider);
+runner.run("PiMonteCarloBenchmark", "benchWarmPiMonteCarloMiddle", 1_000, 10, PiMonteCarloBenchmark.midletDataProvider);

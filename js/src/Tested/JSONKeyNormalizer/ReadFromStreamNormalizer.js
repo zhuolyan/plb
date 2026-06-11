@@ -27,13 +27,7 @@ export class ReadFromStreamNormalizer
 
         await this.recursiveNormalizeTopLvl();
 
-        fs.writeSync(
-            this.fd,
-            Buffer.from("}\n"),
-            0,
-            0,
-            fs.fstatSync(this.fd).size - this._endLine.length
-        );
+        fs.writeSync(this.fd, Buffer.from("}\n"), 0, 0, fs.fstatSync(this.fd).size - this._endLine.length);
     }
 
     async recursiveNormalizeTopLvl()
@@ -42,7 +36,7 @@ export class ReadFromStreamNormalizer
             if (value instanceof Object) {
                 this.recursiveNormalize(value, key);
             } else {
-                this.writeLine(this.normalize(key),value);
+                this.writeLine(this.normalize(key), value);
             }
         }
     }
@@ -52,24 +46,25 @@ export class ReadFromStreamNormalizer
         parentKey = this.prepareParentKey(parentKey);
 
         for (const key in data) {
-            const value = data[key];
+            const value   = data[key];
             const current = parentKey + key;
             if (value instanceof Object) {
                 this.recursiveNormalize(value, current);
             } else {
-                this.writeLine(this.normalize(current),value);
+                this.writeLine(this.normalize(current), value);
             }
         }
     }
+
     writeLine(key, value)
     {
-        if(this.result.includes(key)){
+        if (this.result.includes(key)) {
             return;
         }
 
         this.result.push(key);
 
-        key = JSON.stringify(key);
+        key   = JSON.stringify(key);
         value = JSON.stringify(value);
 
         fs.writeSync(this.fd, Buffer.from(`${key}:${value}${this._endLine}`));
