@@ -4,6 +4,7 @@ import {GCNightmareBenchmark} from "./src/Tasks/GCNightmareBenchmark.js";
 import {MatrixMultiplicationBenchmark} from "./src/Tasks/MatrixMultiplicationBenchmark.js";
 import {NBodiesSimulationBenchmark} from "./src/Tasks/NBodiesSimulationBenchmark.js";
 import {PiMonteCarloBenchmark} from "./src/Tasks/PiMonteCarloBenchmark.js";
+import {RegexpBenchmark} from "./src/Tasks/RegexpBenchmark.js";
 
 const runner = new BenchmarkRunner('./default.template', './runner.js', './results.csv');
 
@@ -226,3 +227,7 @@ runner.run("PiMonteCarloBenchmark", "benchWarmPiMonteCarloEasy", 1_000, 10, PiMo
 //middle
 runner.run("PiMonteCarloBenchmark", "benchColdPiMonteCarloMiddle", 0, 10, PiMonteCarloBenchmark.midletDataProvider);
 runner.run("PiMonteCarloBenchmark", "benchWarmPiMonteCarloMiddle", 1_000, 10, PiMonteCarloBenchmark.midletDataProvider);
+
+// Regexp
+runner.run("RegexpBenchmark", "benchCold", 0, 10, RegexpBenchmark.defaultDataProvider);
+runner.run("RegexpBenchmark", "benchWarm", 1_000, 10, RegexpBenchmark.defaultDataProvider);
