@@ -23,7 +23,7 @@ const runner = new BenchmarkRunner('./default.template', './runner.js', './resul
 // "benchWarmGCNightmareMiddle", 1_000, 10, GCNightmareBenchmark.defaultDataProvider); runner.run("GCNightmareBenchmark", "benchColdGCNightmareHard", 0, 10, GCNightmareBenchmark.defaultDataProvider); runner.run("GCNightmareBenchmark", "benchWarmGCNightmareHard", 1_000, 10, GCNightmareBenchmark.defaultDataProvider);
 
 //JSON normalizer
-// runner.run("JSONNormalizerBenchmark", "benchColdFullLoad", 0, 10, () => [1]);
-runner.run("JSONNormalizerBenchmark", "benchColdReadFromStream", 0, 10, () => [1]);
+runner.run("JSONNormalizerBenchmark", "benchColdFullLoad", 0, 10, () => [1]);
+// runner.run("JSONNormalizerBenchmark", "benchColdReadFromStream", 0, 10, () => [1]);
 // runner.run("JSONNormalizerBenchmark", "benchWarmFullLoad", 1_000, 10, () => [1]);
 // runner.run("JSONNormalizerBenchmark", "benchWarmReadFromStream", 1_000, 10, () => [1]);

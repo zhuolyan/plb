@@ -5,43 +5,74 @@ import {streamObject} from './../../../node_modules/stream-json/src/streamers/st
 
 export class ReadFromStreamNormalizer
 {
-    result = null;
-    input  = null;
+    _endLine = ",\n";
+    result   = [];
+    input    = null;
+    fd       = null;
 
-    constructor()
+    constructor(resultFile)
     {
         Object.assign(ReadFromStreamNormalizer.prototype, NormalizerMixin);
     }
 
     async run()
     {
-        this.input = chain([fs.createReadStream('../domains.json'), streamObject.withParserAsStream()]);
-        for await (const {key, value} of data) {
-            let current = parentKey + key;
+        this.fd = fs.openSync("./json-normalized.json", "w");
+        fs.writeSync(this.fd, Buffer.from("{\n"));
+
+        this.input = chain([
+                               fs.createReadStream('../domains.json'),
+                               streamObject.withParserAsStream()
+                           ]);
+
+        await this.recursiveNormalizeTopLvl();
+
+        fs.writeSync(
+            this.fd,
+            Buffer.from("}\n"),
+            0,
+            0,
+            fs.fstatSync(this.fd).size - this._endLine.length
+        );
+    }
+
+    async recursiveNormalizeTopLvl()
+    {
+        for await (const {key, value} of this.input) {
             if (value instanceof Object) {
-                console.log(value); break;
-                this.recursiveNormalize(value, current);
+                this.recursiveNormalize(value, key);
             } else {
-                this.result[this.normalize(current)] = value;
+                this.writeLine(this.normalize(key),value);
             }
         }
-
-        await this.recursiveNormalize(this.input,"")
-
-        fs.writeFileSync('./json-normalized.json', JSON.stringify(this.result), {encoding: 'utf8'});
     }
 
     recursiveNormalize(data, parentKey = "")
     {
         parentKey = this.prepareParentKey(parentKey);
 
-        for (const {key, value} of data) {
-            let current = parentKey + key;
+        for (const key in data) {
+            const value = data[key];
+            const current = parentKey + key;
             if (value instanceof Object) {
                 this.recursiveNormalize(value, current);
             } else {
-                this.result[this.normalize(current)] = value;
+                this.writeLine(this.normalize(current),value);
             }
         }
     }
+    writeLine(key, value)
+    {
+        if(this.result.includes(key)){
+            return;
+        }
+
+        this.result.push(key);
+
+        key = JSON.stringify(key);
+        value = JSON.stringify(value);
+
+        fs.writeSync(this.fd, Buffer.from(`${key}:${value}${this._endLine}`));
+    }
+
 }

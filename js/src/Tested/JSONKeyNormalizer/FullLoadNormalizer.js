@@ -3,7 +3,7 @@ import fs from "fs";
 
 export class FullLoadNormalizer
 {
-    result = null;
+    result = {};
     input  = null;
 
     constructor()
@@ -17,15 +17,16 @@ export class FullLoadNormalizer
 
         this.recursiveNormalize(this.input);
 
-        fs.writeFileSync('./json-normalized.json', JSON.stringify(this.result), {encoding: 'utf8'});
+        fs.writeFileSync('./json-normalized.json', JSON.stringify(this.result, null, 2), {encoding: 'utf8'});
     }
 
     recursiveNormalize(data, parentKey = "")
     {
         parentKey = this.prepareParentKey(parentKey);
 
-        for (const [key, value] of data) {
-            let current = parentKey + key;
+        for (const key in data) {
+            const value   = data[key];
+            const current = parentKey + key;
             if (value instanceof Object) {
                 this.recursiveNormalize(value, current);
             } else {
