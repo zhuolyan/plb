@@ -4,7 +4,7 @@ namespace App\Eratosthenes;
 
 use SplFixedArray;
 
-class SplSieve
+class FixedSieve
 {
     use SieveTrait;
 

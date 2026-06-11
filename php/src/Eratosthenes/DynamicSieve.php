@@ -2,7 +2,7 @@
 
 namespace App\Eratosthenes;
 
-class ArraySieve
+class DynamicSieve
 {
     use SieveTrait;
 
