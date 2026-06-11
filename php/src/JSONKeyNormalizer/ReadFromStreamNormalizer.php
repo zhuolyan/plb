@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JSONKeyNormlizer;
+namespace App\JSONKeyNormalizer;
 
 use JsonMachine\JsonDecoder\ExtJsonDecoder;
 use JsonMachine\RecursiveItems;
@@ -15,7 +15,7 @@ class ReadFromStreamNormalizer
     private RecursiveItems $input;
     private SplFileObject  $file;
 
-    public function run()
+    public function run(): void
     {
         $this->file = new SplFileObject(__DIR__ . "/../../json-normalized.json", "w");
         $this->file->fwrite("{" . PHP_EOL);

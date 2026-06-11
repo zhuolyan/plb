@@ -1,17 +1,13 @@
 <?php
 
-namespace App\JSONKeyNormlizer;
+namespace App\JSONKeyNormalizer;
 
 trait NormalizerTrait
 {
-    private const INPUT_FILE = __DIR__ . '/../../../domains.json';
+    private const string INPUT_FILE = __DIR__ . '/../../../domains.json';
 
-    private function prepareParentKey(string $parent)
+    private function prepareParentKey(string $parent): string
     {
-        if (!empty($parent)) {
-            $parent = "$parent-";
-        }
-
         return empty($parent) ? "" : "$parent-";
     }
 

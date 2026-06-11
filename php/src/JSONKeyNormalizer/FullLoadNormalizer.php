@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JSONKeyNormlizer;
+namespace App\JSONKeyNormalizer;
 
 class FullLoadNormalizer
 {
@@ -9,7 +9,7 @@ class FullLoadNormalizer
     private array $result = [];
     private array $input  = [];
 
-    public function run()
+    public function run(): void
     {
         $this->input = json_decode(file_get_contents(self::INPUT_FILE), true);
 

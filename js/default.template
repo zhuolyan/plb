@@ -4,14 +4,26 @@ const warmUp = {{warmUp}};
 
 const bench = new {{class}}();
 
+function isAsyncKeywordFunc(fn) {
+  return fn?.constructor?.name === "AsyncFunction";
+}
+
 if (warmUp > 0) {
     for (let i = 1; i <= warmUp; i++) {
-        bench.{{method}}(2);
+        let result = bench.{{method}}(2);
+        if(result instanceof Promise){
+            await result;
+        }
     }
 }
 
 let startTime = process.hrtime.bigint();
-bench.{{method}}({{size}});
+
+let result = bench.{{method}}({{size}});
+if(result instanceof Promise){
+    await result;
+}
+
 let time = Number(process.hrtime.bigint() - startTime);
 time = time / 1_000;
 

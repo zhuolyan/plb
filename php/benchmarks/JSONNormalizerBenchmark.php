@@ -2,8 +2,8 @@
 
 namespace App\Benchmarks;
 
-use App\JSONKeyNormlizer\FullLoadNormalizer;
-use App\JSONKeyNormlizer\ReadFromStreamNormalizer;
+use App\JSONKeyNormalizer\FullLoadNormalizer;
+use App\JSONKeyNormalizer\ReadFromStreamNormalizer;
 use PhpBench\Attributes\Groups;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\Warmup;

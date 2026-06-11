@@ -1,7 +1,8 @@
 import {Node} from "../Tested/GCNigthmare/Node.js";
 import {dataProvider} from "../helpers.js";
 
-export class GCNightmare {
+export class GCNightmareBenchmark
+{
     result = null;
 
     static defaultDataProvider() {
