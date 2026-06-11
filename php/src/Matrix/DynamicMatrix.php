@@ -2,7 +2,7 @@
 
 namespace App\Matrix;
 
-class ArrayMatrix
+class DynamicMatrix
 {
     use MatrixMultiplicationTrait;
 

@@ -2,8 +2,8 @@
 
 namespace App\Benchmarks;
 
-use App\Matrix\ArrayMatrix;
-use App\Matrix\SplMatrix;
+use App\Matrix\DynamicMatrix;
+use App\Matrix\FixedMatrix;
 use PhpBench\Attributes\Groups;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
@@ -16,137 +16,137 @@ class MatrixMultiplicationBenchmark
     #[Iterations(10)]
     #[Groups(["easy", "matrix-multiplication"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchColdArrayMatrixMultiplicationEasy(array $params): void
+    public function benchColdDynamicMatrixMultiplicationEasy(array $params): void
     {
-        $this->arrayMatrixMultiplication($params);
+        $this->dynamicMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Groups(["easy", "matrix-multiplication"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchColdSplMatrixMultiplicationEasy(array $params): void
+    public function benchColdFixedMatrixMultiplicationEasy(array $params): void
     {
-        $this->splMatrixMultiplication($params);
-    }
-
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["easy", "matrix-multiplication"])]
-    #[ParamProviders('easyDataProvider')]
-    public function benchWarmArrayMatrixMultiplicationEasy(array $params): void
-    {
-        $this->arrayMatrixMultiplication($params);
+        $this->fixedMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["easy", "matrix-multiplication"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchWarmSplMatrixMultiplicationEasy(array $params): void
+    public function benchWarmDynamicMatrixMultiplicationEasy(array $params): void
     {
-        $this->splMatrixMultiplication($params);
+        $this->dynamicMatrixMultiplication($params);
+    }
+
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["easy", "matrix-multiplication"])]
+    #[ParamProviders('easyDataProvider')]
+    public function benchWarmFixedMatrixMultiplicationEasy(array $params): void
+    {
+        $this->fixedMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Groups(["middle", "matrix-multiplication"])]
     #[ParamProviders('middleDataProvider')]
-    public function benchColdArrayMatrixMultiplicationMiddle(array $params): void
+    public function benchColdDynamicMatrixMultiplicationMiddle(array $params): void
     {
-        $this->arrayMatrixMultiplication($params);
+        $this->dynamicMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Groups(["middle", "matrix-multiplication"])]
     #[ParamProviders('middleDataProvider')]
-    public function benchColdSplMatrixMultiplicationMiddle(array $params): void
+    public function benchColdFixedMatrixMultiplicationMiddle(array $params): void
     {
-        $this->splMatrixMultiplication($params);
+        $this->fixedMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["middle", "matrix-multiplication"])]
     #[ParamProviders('middleDataProvider')]
-    public function benchWarmArrayMatrixMultiplicationMiddle(array $params): void
+    public function benchWarmDynamicMatrixMultiplicationMiddle(array $params): void
     {
-        $this->arrayMatrixMultiplication($params);
+        $this->dynamicMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["middle", "matrix-multiplication"])]
     #[ParamProviders('middleDataProvider')]
-    public function benchWarmSplMatrixMultiplicationMiddle(array $params): void
+    public function benchWarmFixedMatrixMultiplicationMiddle(array $params): void
     {
-        $this->splMatrixMultiplication($params);
+        $this->fixedMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Groups(["hard", "matrix-multiplication"])]
     #[ParamProviders('hardDataProvider')]
-    public function benchColdArrayMatrixMultiplicationHard(array $params): void
+    public function benchColdDynamicMatrixMultiplicationHard(array $params): void
     {
-        $this->arrayMatrixMultiplication($params);
+        $this->dynamicMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Groups(["hard", "matrix-multiplication"])]
     #[ParamProviders('hardDataProvider')]
-    public function benchColdSplMatrixMultiplicationHard(array $params): void
+    public function benchColdFixedMatrixMultiplicationHard(array $params): void
     {
-        $this->splMatrixMultiplication($params);
+        $this->fixedMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["hard", "matrix-multiplication"])]
     #[ParamProviders('hardDataProvider')]
-    public function benchWarmArrayMatrixMultiplicationHard(array $params): void
+    public function benchWarmDynamicMatrixMultiplicationHard(array $params): void
     {
-        $this->arrayMatrixMultiplication($params);
+        $this->dynamicMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["ultimate", "matrix-multiplication"])]
     #[ParamProviders('hardDataProvider')]
-    public function benchWarmSplMatrixMultiplicationHard(array $params): void
+    public function benchWarmFixedMatrixMultiplicationHard(array $params): void
     {
-        $this->splMatrixMultiplication($params);
+        $this->fixedMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Groups(["ultimate", "matrix-multiplication"])]
     #[ParamProviders('ultimateDataProvider')]
-    public function benchColdArrayMatrixMultiplicationUltimate(array $params): void
+    public function benchColdDynamicMatrixMultiplicationUltimate(array $params): void
     {
-        $this->arrayMatrixMultiplication($params);
+        $this->dynamicMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Groups(["ultimate", "matrix-multiplication"])]
     #[ParamProviders('ultimateDataProvider')]
-    public function benchColdSplMatrixMultiplicationUltimate(array $params): void
+    public function benchColdFixedMatrixMultiplicationUltimate(array $params): void
     {
-        $this->splMatrixMultiplication($params);
-    }
-
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["ultimate", "matrix-multiplication"])]
-    #[ParamProviders('ultimateDataProvider')]
-    public function benchWarmArrayMatrixMultiplicationUltimate(array $params): void
-    {
-        $this->arrayMatrixMultiplication($params);
+        $this->fixedMatrixMultiplication($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["ultimate", "matrix-multiplication"])]
     #[ParamProviders('ultimateDataProvider')]
-    public function benchWarmSplMatrixMultiplicationUltimate(array $params): void
+    public function benchWarmDynamicMatrixMultiplicationUltimate(array $params): void
     {
-        $this->splMatrixMultiplication($params);
+        $this->dynamicMatrixMultiplication($params);
+    }
+
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["ultimate", "matrix-multiplication"])]
+    #[ParamProviders('ultimateDataProvider')]
+    public function benchWarmFixedMatrixMultiplicationUltimate(array $params): void
+    {
+        $this->fixedMatrixMultiplication($params);
     }
 
     public function easyDataProvider(): array
@@ -169,18 +169,18 @@ class MatrixMultiplicationBenchmark
         return $this->dataProvider(1_000, 5_000, 1_000);
     }
 
-    private function arrayMatrixMultiplication(array $params): void
+    private function dynamicMatrixMultiplication(array $params): void
     {
-        $first  = new ArrayMatrix($params['size'], true);
-        $second = new ArrayMatrix($params['size'], true);
+        $first  = new DynamicMatrix($params['size'], true);
+        $second = new DynamicMatrix($params['size'], true);
 
         $first->multiplication($second);
     }
 
-    private function splMatrixMultiplication(array $params): void
+    private function fixedMatrixMultiplication(array $params): void
     {
-        $first  = new SplMatrix($params['size'], true);
-        $second = new SplMatrix($params['size'], true);
+        $first  = new FixedMatrix($params['size'], true);
+        $second = new FixedMatrix($params['size'], true);
 
         $first->multiplication($second);
     }

@@ -1,4 +1,4 @@
-export function dataProvider(start, end, step)
+export function dataProvider(start, end, step = 1)
 {
     let result = [];
 

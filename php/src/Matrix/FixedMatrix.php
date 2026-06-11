@@ -4,7 +4,7 @@ namespace App\Matrix;
 
 use SplFixedArray;
 
-class SplMatrix
+class FixedMatrix
 {
     use MatrixMultiplicationTrait;
 
