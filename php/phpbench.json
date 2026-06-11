@@ -19,19 +19,13 @@
         "benchmark",
         "subject",
         "set",
-        "revs",
         "mem_peak",
         "mem_real",
-        "mem_final",
         "mode",
-        "best",
-        "mean",
-        "worst",
         "rstdev"
       ],
       "expressions": {
-        "mem_real": "result_mem_real[0] as memory",
-        "mem_final": "result_mem_final[0] as memory"
+        "mem_real": "result_mem_real[0] as memory"
       }
     }
   },

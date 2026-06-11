@@ -23,17 +23,17 @@ class RegexpBenchmark
         $this->result = preg_match(self::PATTERN, $str);
     }
 
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["regexp"])]
-    #[ParamProviders('defaultDataProvider')]
-    public function benchWarm(array $params): void
-    {
-        $this->benchCold($params);
-    }
+//    #[Iterations(10)]
+//    #[Warmup(1_000)]
+//    #[Groups(["regexp"])]
+//    #[ParamProviders('defaultDataProvider')]
+//    public function benchWarm(array $params): void
+//    {
+//        $this->benchCold($params);
+//    }
 
     public function defaultDataProvider(): array
     {
-        return $this->dataProvider('size', 255, 255_000, 255);
+        return $this->dataProvider('size', 255, 1000, 255);
     }
 }

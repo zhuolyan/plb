@@ -1,8 +1,14 @@
-import {Bench} from 'tinybench'
-import fs from 'fs';
+import {BenchmarkRunner} from "./src/BenchmarkRunner.js";
 
-const bench = new Bench({name: 'simple benchmark', warmup: true, iterations: 10});
+const runner = new BenchmarkRunner('./default.template', './runner.js', './results.csv');
+const start = process.hrtime.bigint();
+runner.run("Test", "run", 1_000, 3, () => {
+    let data = [];
+    for (let i = 0; i < 10; i++) {
+        data.push(i);
+    }
 
-bench.on('cycle', function (event) {
-    
-})
+    return data;
+});
+
+console.log(process.hrtime.bigint() - start);
