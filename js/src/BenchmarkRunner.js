@@ -22,7 +22,7 @@ export class BenchmarkRunner
                           'mode',
                           'rstdev'
                       ].join(",") + "\n";
-        fs.writeFileSync(this._result,headers, { encoding: 'utf8' });
+        fs.writeFileSync(this._result, headers, {encoding: 'utf8'});
     }
 
     run(className, method, warmUp, iteration, dataProvider)
@@ -51,7 +51,7 @@ export class BenchmarkRunner
                       result.rstdev
                   ].join(",") + "\n";
 
-        fs.appendFileSync(this._result, str, { encoding: 'utf8' });
+        fs.appendFileSync(this._result, str, {encoding: 'utf8'});
 
         this.#deleteRunnerFile()
     }
