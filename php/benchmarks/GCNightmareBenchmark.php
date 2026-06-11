@@ -2,7 +2,7 @@
 
 namespace App\Benchmarks;
 
-use App\GCNigthmare\Node;
+use App\GCNightmare\Node;
 use PhpBench\Attributes\Groups;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
@@ -20,9 +20,7 @@ class GCNightmareBenchmark
     #[ParamProviders('defaultDataProvider')]
     public function benchColdGCNightmareEasy(array $params): void
     {
-        $size = $params['size'];
-
-        for ($i = 0; $i < $size; $i++) {
+        for ($i = 0; $i < $params['size']; $i++) {
             $arr          = [];
             $arr["key$i"] = "value$i";
 
@@ -44,9 +42,7 @@ class GCNightmareBenchmark
     #[ParamProviders('defaultDataProvider')]
     public function benchColdGCNightmareMiddle(array $params): void
     {
-        $size = $params['size'];
-
-        for ($i = 0; $i < $size; $i++) {
+        for ($i = 0; $i < $params['size']; $i++) {
             $this->result       = new StdClass();
             $this->result->test = "test";
         }
@@ -66,9 +62,7 @@ class GCNightmareBenchmark
     #[ParamProviders('defaultDataProvider')]
     public function benchColdGCNightmareHard(array $params): void
     {
-        $size = $params['size'];
-
-        for ($i = 0; $i < $size; $i++) {
+        for ($i = 0; $i < $params['size']; $i++) {
             $this->result              = new Node();
             $this->result->left        = new Node();
             $this->result->right       = new Node();
@@ -88,6 +82,6 @@ class GCNightmareBenchmark
 
     public function defaultDataProvider(): array
     {
-        return $this->dataProvider('size', 10_000, 10_000_000, 10_000);
+        return $this->dataProvider(10_000, 10_000_000, 10_000);
     }
 }

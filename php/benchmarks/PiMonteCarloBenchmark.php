@@ -49,11 +49,11 @@ class PiMonteCarloBenchmark
 
     public function easyDataProvider(): array
     {
-        return $this->dataProvider('size', 1_000, 1_000_000, 1_000);
+        return $this->dataProvider(1_000, 1_000_000, 1_000);
     }
 
     public function midletDataProvider(): array
     {
-        return $this->dataProvider('size', 1_000_000, 1_000_000_000, 1_000_000);
+        return $this->dataProvider(1_000_000, 1_000_000_000, 1_000_000);
     }
 }

@@ -87,12 +87,12 @@ class NBodySimulationBenchmark
 
     public function hardProvider(): array
     {
-        return $this->dataProvider('size', 144_000, 1_584_000, 144_000);
+        return $this->dataProvider(144_000, 1_584_000, 144_000);
     }
 
     public function middleProvider(): array
     {
-        return $this->dataProvider('size', 240, 144_000, 240);
+        return $this->dataProvider(240, 144_000, 240);
     }
 
     private function arraySimulation(array $params): void

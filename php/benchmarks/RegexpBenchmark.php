@@ -34,6 +34,6 @@ class RegexpBenchmark
 
     public function defaultDataProvider(): array
     {
-        return $this->dataProvider('size', 255, 1000, 255);
+        return $this->dataProvider(255, 1000, 255);
     }
 }

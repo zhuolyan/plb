@@ -117,17 +117,17 @@ class EratosthenesBenchmark
 
     public function easyDataProvider(): array
     {
-        return $this->dataProvider('size', 10, 60_000, 10);
+        return $this->dataProvider(10, 60_000, 10);
     }
 
     public function middleDataProvider(): array
     {
-        return $this->dataProvider('size', 60_010, 8_200_000, 20_000);
+        return $this->dataProvider(60_010, 8_200_000, 20_000);
     }
 
     public function hardDataProvider(): array
     {
-        return $this->dataProvider('size', 8_200_000, 1_000_000_000, 2_000_000);
+        return $this->dataProvider(8_200_000, 1_000_000_000, 2_000_000);
     }
 
     private function splSieve(array $params): void
