@@ -2,20 +2,23 @@
 
 namespace App\NBodySimulation;
 
-class ArrayNBodySimulation
+use SplFixedArray;
+
+class FixedNBodiesSimulation
 {
     use NBodySimulationTrait;
 
-    protected array $bodies = [];
+    protected SplFixedArray $bodies;
 
     public function __construct(protected readonly int $steps_count)
     {
+        $this->bodies = new SplFixedArray(self::BODY_COUNT);
+
         $this->init();
     }
 
-    public function run(): array
+    public function run(): SplFixedArray
     {
-        // Main simulation cycle (Time Stepping)
         $this->simulate();
 
         return $this->bodies;

@@ -2,6 +2,7 @@ import {BenchmarkRunner} from "./src/BenchmarkRunner.js";
 import {EratosthenesBenchmark} from "./src/Tasks/EratosthenesBenchmark.js";
 import {GCNightmareBenchmark} from "./src/Tasks/GCNightmareBenchmark.js";
 import {MatrixMultiplicationBenchmark} from "./src/Tasks/MatrixMultiplicationBenchmark.js";
+import {NBodiesSimulationBenchmark} from "./src/Tasks/NBodiesSimulationBenchmark.js";
 
 const runner = new BenchmarkRunner('./default.template', './runner.js', './results.csv');
 
@@ -155,4 +156,64 @@ runner.run(
     1_000,
     10,
     MatrixMultiplicationBenchmark.ultimateDataProvider
+);
+
+// N-bodies simulation
+// middle
+runner.run(
+    "NBodiesSimulationBenchmark",
+    "benchColdDynamicSimulationMiddle",
+    0,
+    10,
+    NBodiesSimulationBenchmark.middleProvider
+);
+runner.run(
+    "NBodiesSimulationBenchmark",
+    "benchColdFixedSimulationMiddle",
+    0,
+    10,
+    NBodiesSimulationBenchmark.middleProvider
+);
+runner.run(
+    "NBodiesSimulationBenchmark",
+    "benchWarmDynamicSimulationMiddle",
+    1_000,
+    10,
+    NBodiesSimulationBenchmark.middleProvider
+);
+runner.run(
+    "NBodiesSimulationBenchmark",
+    "benchWarmFixedSimulationMiddle",
+    1_000,
+    10,
+    NBodiesSimulationBenchmark.middleProvider
+);
+// hard
+runner.run(
+    "NBodiesSimulationBenchmark",
+    "benchColdDynamicSimulationHard",
+    0,
+    10,
+    NBodiesSimulationBenchmark.hardProvider
+);
+runner.run(
+    "NBodiesSimulationBenchmark",
+    "benchColdFixedSimulationHard",
+    0,
+    10,
+    NBodiesSimulationBenchmark.hardProvider
+);
+runner.run(
+    "NBodiesSimulationBenchmark",
+    "benchWarmDynamicSimulationHard",
+    1_000,
+    10,
+    NBodiesSimulationBenchmark.hardProvider
+);
+runner.run(
+    "NBodiesSimulationBenchmark",
+    "benchWarmFixedSimulationHard",
+    1_000,
+    10,
+    NBodiesSimulationBenchmark.hardProvider
 );

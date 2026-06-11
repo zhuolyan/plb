@@ -2,87 +2,87 @@
 
 namespace App\Benchmarks;
 
-use App\NBodySimulation\ArrayNBodySimulation;
-use App\NBodySimulation\SplNBodySimulation;
+use App\NBodySimulation\DynamicNBodiesSimulation;
+use App\NBodySimulation\FixedNBodiesSimulation;
 use PhpBench\Attributes\Groups;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\ParamProviders;
 use PhpBench\Attributes\Warmup;
 use SplFixedArray;
 
-class NBodySimulationBenchmark
+class NBodiesSimulationBenchmark
 {
     use DataProviderTrait;
 
-    private array         $array_result = [];
-    private SplFixedArray $spl_result;
+    private array         $dynamic_result = [];
+    private SplFixedArray $fixed_result;
 
     #[Iterations(10)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchColdArraySimulationMiddle(array $params): void
+    public function benchColdDynamicSimulationMiddle(array $params): void
     {
-        $this->arraySimulation($params);
+        $this->dynamicSimulation($params);
     }
 
     #[Iterations(10)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchColdSplSimulationMiddle(array $params): void
+    public function benchColdFixedSimulationMiddle(array $params): void
     {
-        $this->splSimulation($params);
+        $this->fixedSimulation($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchWarmArraySimulationMiddle(array $params): void
+    public function benchWarmDynamicSimulationMiddle(array $params): void
     {
-        $this->arraySimulation($params);
+        $this->dynamicSimulation($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchWarmSplSimulationMiddle(array $params): void
+    public function benchWarmFixedSimulationMiddle(array $params): void
     {
-        $this->splSimulation($params);
+        $this->fixedSimulation($params);
     }
 
     #[Iterations(10)]
     #[Groups(["hard", "n-body-simulation"])]
     #[ParamProviders('hardProvider')]
-    public function benchColdArraySimulationHard(array $params): void
+    public function benchColdDynamicSimulationHard(array $params): void
     {
-        $this->arraySimulation($params);
+        $this->dynamicSimulation($params);
     }
 
     #[Iterations(10)]
     #[Groups(["hard", "n-body-simulation"])]
     #[ParamProviders('hardProvider')]
-    public function benchColdSplSimulationHard(array $params): void
+    public function benchColdFixedSimulationHard(array $params): void
     {
-        $this->splSimulation($params);
-    }
-
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["hard", "n-body-simulation"])]
-    #[ParamProviders('hardProvider')]
-    public function benchWarmArraySimulationHard(array $params): void
-    {
-        $this->arraySimulation($params);
+        $this->fixedSimulation($params);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["hard", "n-body-simulation"])]
     #[ParamProviders('hardProvider')]
-    public function benchWarmSplSimulationHard(array $params): void
+    public function benchWarmDynamicSimulationHard(array $params): void
     {
-        $this->splSimulation($params);
+        $this->dynamicSimulation($params);
+    }
+
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["hard", "n-body-simulation"])]
+    #[ParamProviders('hardProvider')]
+    public function benchWarmFixedSimulationHard(array $params): void
+    {
+        $this->fixedSimulation($params);
     }
 
     public function hardProvider(): array
@@ -95,15 +95,15 @@ class NBodySimulationBenchmark
         return $this->dataProvider(240, 144_000, 240);
     }
 
-    private function arraySimulation(array $params): void
+    private function dynamicSimulation(array $params): void
     {
-        $simulation         = new ArrayNBodySimulation($params['size']);
-        $this->array_result = $simulation->run();
+        $simulation           = new DynamicNBodiesSimulation($params['size']);
+        $this->dynamic_result = $simulation->run();
     }
 
-    private function splSimulation(array $params): void
+    private function fixedSimulation(array $params): void
     {
-        $simulation       = new SplNBodySimulation($params['size']);
-        $this->spl_result = $simulation->run();
+        $simulation         = new FixedNBodiesSimulation($params['size']);
+        $this->fixed_result = $simulation->run();
     }
 }
