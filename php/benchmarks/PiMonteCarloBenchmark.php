@@ -15,35 +15,35 @@ class PiMonteCarloBenchmark
     #[Iterations(10)]
     #[Groups(["easy", "pi-monte-carlo"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchColdPiMonteCarloEasy(array $params): void
+    public function benchColdPiMonteCarloEasy(int $size): void
     {
-        $this->pi = $this->calculate($params);
+        $this->pi = $this->calculate($size);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["easy", "pi-monte-carlo"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchWarmPiMonteCarloEasy(array $params): void
+    public function benchWarmPiMonteCarloEasy(int $size): void
     {
-        $this->pi = $this->calculate($params);
+        $this->pi = $this->calculate($size);
     }
 
     #[Iterations(10)]
     #[Groups(["middle", "pi-monte-carlo"])]
     #[ParamProviders('midletDataProvider')]
-    public function benchColdPiMonteCarloMiddle(array $params): void
+    public function benchColdPiMonteCarloMiddle(int $size): void
     {
-        $this->pi = $this->calculate($params);
+        $this->pi = $this->calculate($size);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["middle", "pi-monte-carlo"])]
     #[ParamProviders('midletDataProvider')]
-    public function benchWarmPiMonteCarloMiddle(array $params): void
+    public function benchWarmPiMonteCarloMiddle(int $size): void
     {
-        $this->pi = $this->calculate($params);
+        $this->pi = $this->calculate($size);
     }
 
     public function easyDataProvider(): array
@@ -56,10 +56,10 @@ class PiMonteCarloBenchmark
         return $this->dataProvider(1_000_000, 1_000_000_000, 1_000_000);
     }
 
-    private function calculate($params): float
+    private function calculate($size): float
     {
         $inside = 0;
-        $size   = $params['size'];
+        $size   = $size;
         for ($i = 0; $i < $size; $i++) {
             $x = mt_rand() / mt_getrandmax();
             $y = mt_rand() / mt_getrandmax();

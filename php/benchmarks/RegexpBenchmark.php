@@ -17,9 +17,9 @@ class RegexpBenchmark
     #[Iterations(10)]
     #[Groups(["regexp"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchCold(array $params): void
+    public function benchCold(int $size): void
     {
-        $str          = str_repeat("a", $params['size']) . "b";
+        $str          = str_repeat("a", $size) . "b";
         $this->result = preg_match(self::PATTERN, $str);
     }
 
@@ -27,9 +27,9 @@ class RegexpBenchmark
     #[Warmup(1_000)]
     #[Groups(["regexp"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchWarm(array $params): void
+    public function benchWarm(int $size): void
     {
-        $this->benchCold($params);
+        $this->benchCold($size);
     }
 
     public function defaultDataProvider(): array
