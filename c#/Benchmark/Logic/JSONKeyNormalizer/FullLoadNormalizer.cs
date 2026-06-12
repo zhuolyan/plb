@@ -4,30 +4,30 @@ namespace Benchmark.Logic.JSONKeyNormalizer;
 
 public class FullLoadNormalizer : AbstractNormalizer
 {
-    private          Dictionary<string, object> _input = new();
-    private readonly Dictionary<string, string> _result = new();
+    private readonly Dictionary<string, string>      _result = new();
+    private          Dictionary<string, JsonElement> _input  = new();
 
     public void Run()
     {
-        string data = File.ReadAllText(AbstractNormalizer.INPUT_FILE) ?? throw new InvalidOperationException();
-        this._input = JsonSerializer.Deserialize<Dictionary<string, object>>(data) ?? throw new InvalidOperationException();
+        string data = File.ReadAllText(this.InputPath) ?? throw new InvalidOperationException();
+        this._input = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(data) ?? throw new InvalidOperationException();
 
         this.RecursiveNormalize(this._input);
-
-        File.WriteAllText(AbstractNormalizer.OUTPUT_FILE, JsonSerializer.Serialize(this._result));
+        JsonSerializerOptions options = new() { WriteIndented = true };
+        File.WriteAllText(this.OutputPath, JsonSerializer.Serialize(this._result, options));
     }
 
-    private void RecursiveNormalize(Dictionary<string, object> data, string parentKey = "")
+    private void RecursiveNormalize(Dictionary<string, JsonElement> data, string parentKey = "")
     {
         parentKey = this.PrepareParentKey(parentKey);
 
-        foreach ((string key, object value) in data) {
-            string currentKey = $"{parentKey}-{key}";
+        foreach ((string key, JsonElement value) in data) {
+            string currentKey = $"{parentKey}{key}";
 
-            if (value is Dictionary<string, object> dict) {
-                this.RecursiveNormalize(dict, currentKey);
+            if (value.ValueKind == JsonValueKind.Object) {
+                this.RecursiveNormalize(value.Deserialize<Dictionary<string, JsonElement>>()!, currentKey);
             } else {
-                this._result[this.Normalize(currentKey)] = (string)value;
+                this._result.TryAdd(this.Normalize(currentKey), value.GetString()!);
             }
         }
     }

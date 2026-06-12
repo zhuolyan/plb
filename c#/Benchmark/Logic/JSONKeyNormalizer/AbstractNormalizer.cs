@@ -4,15 +4,15 @@ namespace Benchmark.Logic.JSONKeyNormalizer;
 
 public abstract partial class AbstractNormalizer
 {
-    protected const string INPUT_FILE  = "../../../../../domains.json";
-    protected const string OUTPUT_FILE = "../../../../json-normalized.json";
+    protected string InputPath  => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "..", "..", "..", "..", "..", "domains.json");
+    protected string OutputPath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "..", "..", "..", "..", "json-normalized.json");
 
     [GeneratedRegex("[_-]", RegexOptions.IgnoreCase | RegexOptions.Compiled)]
     protected static partial Regex SplitRegexp();
 
     protected string PrepareParentKey(string parent)
     {
-        return string.IsNullOrEmpty(parent) ? string.Empty : $"{parent}-";
+        return string.IsNullOrWhiteSpace(parent) ? string.Empty : $"{parent}-";
     }
 
     protected string Normalize(string input)

@@ -26,3 +26,7 @@ BenchmarkRunner.Run<EratosthenesHardWarm>(config);
 //GC Nightmare
 BenchmarkRunner.Run<GCNightmareCold>(config);
 BenchmarkRunner.Run<GCNightmareWarm>(config);
+
+// JSON Normalizer
+BenchmarkRunner.Run<JSONNormalizerCold>(config);
+BenchmarkRunner.Run<JSONNormalizerWarm>(config);
