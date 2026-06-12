@@ -59,7 +59,6 @@ class PiMonteCarloBenchmark
     private function calculate($size): float
     {
         $inside = 0;
-        $size   = $size;
         for ($i = 0; $i < $size; $i++) {
             $x = mt_rand() / mt_getrandmax();
             $y = mt_rand() / mt_getrandmax();
