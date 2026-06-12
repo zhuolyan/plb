@@ -15,9 +15,14 @@ CsvExporter exporter = new(CsvSeparator.CurrentCulture,
 
 ManualConfig config = ManualConfig.CreateMinimumViable().AddExporter(exporter).AddDiagnoser(MemoryDiagnoser.Default);
 
+// Eratosthenes
 BenchmarkRunner.Run<EratosthenesEasyCold>(config);
 BenchmarkRunner.Run<EratosthenesMiddleCold>(config);
 BenchmarkRunner.Run<EratosthenesHardCold>(config);
 BenchmarkRunner.Run<EratosthenesEasyWarm>(config);
 BenchmarkRunner.Run<EratosthenesMiddleWarm>(config);
 BenchmarkRunner.Run<EratosthenesHardWarm>(config);
+
+//GC Nightmare
+BenchmarkRunner.Run<GCNightmareCold>(config);
+BenchmarkRunner.Run<GCNightmareWarm>(config);
