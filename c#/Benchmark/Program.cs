@@ -30,3 +30,12 @@ BenchmarkRunner.Run<GCNightmareWarm>(config);
 // JSON Normalizer
 BenchmarkRunner.Run<JSONNormalizerCold>(config);
 BenchmarkRunner.Run<JSONNormalizerWarm>(config);
+
+// Matrix
+BenchmarkRunner.Run<MatrixMultiplicationColdEasy>(config);
+BenchmarkRunner.Run<MatrixMultiplicationColdMiddle>(config);
+BenchmarkRunner.Run<MatrixMultiplicationColdHard>(config);
+BenchmarkRunner.Run<MatrixMultiplicationColdUltimate>(config);
+BenchmarkRunner.Run<MatrixMultiplicationWarmEasy>(config);
+BenchmarkRunner.Run<MatrixMultiplicationWarmMiddle>(config);
+BenchmarkRunner.Run<MatrixMultiplicationWarmHard>(config);

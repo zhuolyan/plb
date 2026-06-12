@@ -11,7 +11,7 @@ export class MatrixMultiplicationBenchmark
 
     static middleDataProvider()
     {
-        return dataProvider(80, 160)
+        return dataProvider(80, 160, 2)
     }
 
     static hardDataProvider()
@@ -90,16 +90,6 @@ export class MatrixMultiplicationBenchmark
     }
 
     benchColdFixedMatrixMultiplicationUltimate(size)
-    {
-        this.fixedMatrixMultiplication(size);
-    }
-
-    benchWarmDynamicMatrixMultiplicationUltimate(size)
-    {
-        this.dynamicMatrixMultiplication(size);
-    }
-
-    benchWarmFixedMatrixMultiplicationUltimate(size)
     {
         this.fixedMatrixMultiplication(size);
     }

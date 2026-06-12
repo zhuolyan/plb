@@ -145,20 +145,6 @@ runner.run(
     10,
     MatrixMultiplicationBenchmark.ultimateDataProvider
 );
-runner.run(
-    "MatrixMultiplicationBenchmark",
-    "benchWarmDynamicMatrixMultiplicationUltimate",
-    1_000,
-    10,
-    MatrixMultiplicationBenchmark.ultimateDataProvider
-);
-runner.run(
-    "MatrixMultiplicationBenchmark",
-    "benchWarmFixedMatrixMultiplicationUltimate",
-    1_000,
-    10,
-    MatrixMultiplicationBenchmark.ultimateDataProvider
-);
 
 // N-bodies simulation
 // middle

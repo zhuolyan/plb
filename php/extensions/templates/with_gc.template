@@ -36,7 +36,7 @@ foreach ($beforeMethods as $beforeMethod) {
 // run warmup if required
 if ($warmup) {
     for ($i = 0; $i < $warmup; $i++) {
-        $benchmark->{{ subject }}(2);
+        $benchmark->{{ subject }}($parameters['size']);
     }
 }
 

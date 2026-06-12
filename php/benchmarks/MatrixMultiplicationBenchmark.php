@@ -131,24 +131,6 @@ class MatrixMultiplicationBenchmark
         $this->fixedMatrixMultiplication($size);
     }
 
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["ultimate", "matrix-multiplication"])]
-    #[ParamProviders('ultimateDataProvider')]
-    public function benchWarmDynamicMatrixMultiplicationUltimate(int $size): void
-    {
-        $this->dynamicMatrixMultiplication($size);
-    }
-
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["ultimate", "matrix-multiplication"])]
-    #[ParamProviders('ultimateDataProvider')]
-    public function benchWarmFixedMatrixMultiplicationUltimate(int $size): void
-    {
-        $this->fixedMatrixMultiplication($size);
-    }
-
     public function easyDataProvider(): array
     {
         return $this->dataProvider(2, 80);
@@ -156,7 +138,7 @@ class MatrixMultiplicationBenchmark
 
     public function middleDataProvider(): array
     {
-        return $this->dataProvider(80, 160);
+        return $this->dataProvider(80, 160, 2);
     }
 
     public function hardDataProvider(): array

@@ -10,7 +10,7 @@ function isAsyncKeywordFunc(fn) {
 
 if (warmUp > 0) {
     for (let i = 1; i <= warmUp; i++) {
-        let result = bench.{{method}}(2);
+        let result = bench.{{method}}({{size}});
         if(result instanceof Promise){
             await result;
         }
