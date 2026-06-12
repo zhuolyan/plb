@@ -19,7 +19,7 @@ export class BenchmarkRunner
                           'set',
                           'mem_peak',
                           'mem_real',
-                          'mode',
+                          'mean',
                           'rstdev'
                       ].join(",") + "\n";
         fs.writeFileSync(this._result, headers, {encoding: 'utf8'});
@@ -47,7 +47,7 @@ export class BenchmarkRunner
                       set,
                       result.mem_peak,
                       result.mem_real,
-                      result.mode,
+                      result.mean,
                       result.rstdev
                   ].join(",") + "\n";
 
@@ -65,7 +65,7 @@ export class BenchmarkRunner
             revs:      iterations,
             mem_peak:  0,
             mem_real:  0,
-            mode:      0,
+            mean:      0,
             rstdev:    0,
         }
 
@@ -76,7 +76,7 @@ export class BenchmarkRunner
             const data   = JSON.parse(output);
             results.mem_peak += data.mem.peak;
             results.mem_real += data.mem.real;
-            results.mode += data.time;
+            results.mean += data.time;
 
             times.push(data.time);
 
@@ -88,17 +88,17 @@ export class BenchmarkRunner
 
     #calculateResult(results, times, iterations)
     {
-        results.mode     = results.mode / iterations;
+        results.mean     = results.mean / iterations;
         results.mem_peak = Math.round(results.mem_peak / iterations);
         results.mem_real = Math.round(results.mem_real / iterations);
 
         let sumDelta = 0;
 
         for (let i = 0; i < times.length; i++) {
-            sumDelta += Math.abs(times[i] - results.mode);
+            sumDelta += Math.abs(times[i] - results.mean);
         }
 
-        results.rstdev = sumDelta / iterations / results.mode * 100;
+        results.rstdev = sumDelta / iterations / results.mean * 100;
 
         return results;
     }

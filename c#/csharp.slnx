@@ -1,1 +1,3 @@
-<Solution />
+<Solution>
+    <Project Path="Benchmark/Benchmark.csproj"/>
+</Solution>
