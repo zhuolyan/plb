@@ -19,6 +19,6 @@ public class EratosthenesEasyWarm
     [Benchmark]
     public void DynamicSieve()
     {
-        new FixedSieve(this.Size).Sieve();
+        new DynamicSieve(this.Size).Sieve();
     }
 }

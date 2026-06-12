@@ -39,3 +39,9 @@ BenchmarkRunner.Run<MatrixMultiplicationColdUltimate>(config);
 BenchmarkRunner.Run<MatrixMultiplicationWarmEasy>(config);
 BenchmarkRunner.Run<MatrixMultiplicationWarmMiddle>(config);
 BenchmarkRunner.Run<MatrixMultiplicationWarmHard>(config);
+
+//N-bodies simulation
+BenchmarkRunner.Run<NBodySimulationColdMiddle>(config);
+BenchmarkRunner.Run<NBodySimulationColdHard>(config);
+BenchmarkRunner.Run<NBodySimulationWarmMiddle>(config);
+BenchmarkRunner.Run<NBodySimulationWarmHard>(config);

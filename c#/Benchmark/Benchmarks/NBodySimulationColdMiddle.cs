@@ -1,4 +1,4 @@
-using Benchmark.Logic.Eratosthenes;
+using Benchmark.Logic.NBodySimulation;
 
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
@@ -6,20 +6,20 @@ using BenchmarkDotNet.Engines;
 namespace Benchmark.Benchmarks;
 
 [SimpleJob(RunStrategy.ColdStart, 10, 0, 1)]
-public class EratosthenesEasyCold
+public class NBodySimulationColdMiddle
 {
-    [ParamsSource(typeof(DataProvider), nameof(DataProvider.EratosthenesEasy))]
+    [ParamsSource(typeof(DataProvider), nameof(DataProvider.NBodiesMiddle))]
     public int Size;
 
     [Benchmark]
     public void FixedSieve()
     {
-        new FixedSieve(this.Size).Sieve();
+        new FixedNBodiesSimulation(this.Size).Run();
     }
 
     [Benchmark]
     public void DynamicSieve()
     {
-        new DynamicSieve(this.Size).Sieve();
+        new DynamicNBodiesSimulation(this.Size).Run();
     }
 }
