@@ -7,21 +7,21 @@ const bench = new {{class}}();
 function isAsyncKeywordFunc(fn) {
   return fn?.constructor?.name === "AsyncFunction";
 }
-
+let someTrashedResult = null;
 if (warmUp > 0) {
     for (let i = 1; i <= warmUp; i++) {
-        let result = bench.{{method}}({{size}});
+        someTrashedResult = let result = bench.{{method}}({{size}});
         if(result instanceof Promise){
-            await result;
+            someTrashedResult = await result;
         }
     }
 }
 
 let startTime = process.hrtime.bigint();
 
-let result = bench.{{method}}({{size}});
+someTrashedResult = let result = bench.{{method}}({{size}});
 if(result instanceof Promise){
-    await result;
+    someTrashedResult = await result;
 }
 
 let time = Number(process.hrtime.bigint() - startTime);
@@ -33,4 +33,5 @@ console.log(JSON.stringify({
                     'real': process.memoryUsage().rss,
                 },
                 'time': time,
+                'debug_trash': someTrashedResult
             }));

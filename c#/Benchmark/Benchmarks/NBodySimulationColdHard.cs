@@ -12,14 +12,14 @@ public class NBodySimulationColdHard
     public int Size;
 
     [Benchmark]
-    public void FixedSieve()
+    public IList<Body> Fixed()
     {
-        new FixedNBodiesSimulation(this.Size).Run();
+        return new FixedNBodiesSimulation(this.Size).Run();
     }
 
     [Benchmark]
-    public void DynamicSieve()
+    public IList<Body> Dynamic()
     {
-        new DynamicNBodiesSimulation(this.Size).Run();
+        return new DynamicNBodiesSimulation(this.Size).Run();
     }
 }

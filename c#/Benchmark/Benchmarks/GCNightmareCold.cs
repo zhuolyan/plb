@@ -16,7 +16,7 @@ public class GCNightmareCold
     public int Size;
 
     [Benchmark]
-    public void Easy()
+    public dynamic? Easy()
     {
         for (int i = 0; i < this.Size; i++) {
             Dictionary<string, string> arr = new();
@@ -24,19 +24,23 @@ public class GCNightmareCold
 
             this.Result = arr;
         }
+
+        return this.Result;
     }
 
     [Benchmark]
-    public void Middle()
+    public dynamic? Middle()
     {
         for (int i = 0; i < this.Size; i++) {
             this.Result      = new ExpandoObject();
             this.Result.Test = "test";
         }
+
+        return this.Result;
     }
 
     [Benchmark]
-    public void Hard()
+    public dynamic? Hard()
     {
         for (int i = 0; i < this.Size; i++) {
             this.Result            = new Node();
@@ -45,5 +49,7 @@ public class GCNightmareCold
             this.Result.Right.Left = this.Result;
             this.Result.Left.Right = this.Result.Left;
         }
+
+        return this.Result;
     }
 }

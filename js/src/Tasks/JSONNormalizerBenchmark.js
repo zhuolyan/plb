@@ -5,21 +5,21 @@ export class JSONNormalizerBenchmark
 {
     benchColdFullLoad()
     {
-        new FullLoadNormalizer().run();
+       return  new FullLoadNormalizer().run();
     }
 
     async benchColdReadFromStream()
     {
-        await new ReadFromStreamNormalizer().run();
+        return await new ReadFromStreamNormalizer().run();
     }
 
     benchWarmFullLoad()
     {
-        new FullLoadNormalizer().run();
+        return new FullLoadNormalizer().run();
     }
 
     async benchWarmReadFromStream()
     {
-        await new ReadFromStreamNormalizer().run();
+       return await new ReadFromStreamNormalizer().run();
     }
 }

@@ -2,8 +2,6 @@ import {dataProvider} from "../helpers.js";
 
 export class PiMonteCarloBenchmark
 {
-    pi;
-
     static midletDataProvider()
     {
         return dataProvider(1_000_000, 1_000_000_000, 1_000_000);
@@ -16,22 +14,22 @@ export class PiMonteCarloBenchmark
 
     benchColdPiMonteCarloEasy(size)
     {
-        this.pi = this.calculate(size);
+        return this.calculate(size);
     }
 
     benchWarmPiMonteCarloEasy(size)
     {
-        this.pi = this.calculate(size);
+        return this.calculate(size);
     }
 
     benchColdPiMonteCarloMiddle(size)
     {
-        this.pi = this.calculate(size);
+        return this.calculate(size);
     }
 
     benchWarmPiMonteCarloMiddle(size)
     {
-        this.pi = this.calculate(size);
+        return this.calculate(size);
     }
 
     calculate(size)

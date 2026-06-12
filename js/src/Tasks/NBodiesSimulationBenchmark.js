@@ -4,9 +4,6 @@ import {dataProvider} from "../helpers.js";
 
 export class NBodiesSimulationBenchmark
 {
-    fixedResult   = [];
-    dynamicResult = [];
-
     static hardProvider()
     {
         return dataProvider(144_000, 1_584_000, 144_000);
@@ -19,51 +16,51 @@ export class NBodiesSimulationBenchmark
 
     benchColdDynamicSimulationMiddle(size)
     {
-        this.dynamicSimulation(size);
+        return this.dynamicSimulation(size);
     }
 
     benchColdFixedSimulationMiddle(size)
     {
-        this.fixedSimulation(size);
+        return this.fixedSimulation(size);
     }
 
     benchWarmDynamicSimulationMiddle(size)
     {
-        this.dynamicSimulation(size);
+        return this.dynamicSimulation(size);
     }
 
     benchWarmFixedSimulationMiddle(size)
     {
-        this.fixedSimulation(size);
+        return this.fixedSimulation(size);
     }
 
     benchColdDynamicSimulationHard(size)
     {
-        this.dynamicSimulation(size);
+        return this.dynamicSimulation(size);
     }
 
     benchColdFixedSimulationHard(size)
     {
-        this.fixedSimulation(size);
+        return this.fixedSimulation(size);
     }
 
     benchWarmDynamicSimulationHard(size)
     {
-        this.dynamicSimulation(size);
+        return this.dynamicSimulation(size);
     }
 
     benchWarmFixedSimulationHard(size)
     {
-        this.fixedSimulation(size);
+        return this.fixedSimulation(size);
     }
 
     dynamicSimulation(size)
     {
-        this.dynamicResult = new DynamicNBodiesSimulation(size).run();
+        return new DynamicNBodiesSimulation(size).run();
     }
 
     fixedSimulation(size)
     {
-        this.fixedResult = new FixedNBodiesSimulation(size).run();
+        return new FixedNBodiesSimulation(size).run();
     }
 }

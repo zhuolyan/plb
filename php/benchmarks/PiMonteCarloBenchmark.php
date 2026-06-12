@@ -9,41 +9,40 @@ use PhpBench\Attributes\Warmup;
 
 class PiMonteCarloBenchmark
 {
-    public float $pi = 0.0;
     use DataProviderTrait;
 
     #[Iterations(10)]
     #[Groups(["easy", "pi-monte-carlo"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchColdPiMonteCarloEasy(int $size): void
+    public function benchColdPiMonteCarloEasy(int $size): float
     {
-        $this->pi = $this->calculate($size);
+        return $this->calculate($size);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["easy", "pi-monte-carlo"])]
     #[ParamProviders('easyDataProvider')]
-    public function benchWarmPiMonteCarloEasy(int $size): void
+    public function benchWarmPiMonteCarloEasy(int $size): float
     {
-        $this->pi = $this->calculate($size);
+        return $this->calculate($size);
     }
 
     #[Iterations(10)]
     #[Groups(["middle", "pi-monte-carlo"])]
     #[ParamProviders('midletDataProvider')]
-    public function benchColdPiMonteCarloMiddle(int $size): void
+    public function benchColdPiMonteCarloMiddle(int $size): float
     {
-        $this->pi = $this->calculate($size);
+        return $this->calculate($size);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["middle", "pi-monte-carlo"])]
     #[ParamProviders('midletDataProvider')]
-    public function benchWarmPiMonteCarloMiddle(int $size): void
+    public function benchWarmPiMonteCarloMiddle(int $size): float
     {
-        $this->pi = $this->calculate($size);
+        return $this->calculate($size);
     }
 
     public function easyDataProvider(): array

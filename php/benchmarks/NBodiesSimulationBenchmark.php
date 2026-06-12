@@ -14,75 +14,72 @@ class NBodiesSimulationBenchmark
 {
     use DataProviderTrait;
 
-    private array         $dynamic_result = [];
-    private SplFixedArray $fixed_result;
-
     #[Iterations(10)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchColdDynamicSimulationMiddle(int $size): void
+    public function benchColdDynamicSimulationMiddle(int $size): array
     {
-        $this->dynamicSimulation($size);
+        return $this->dynamicSimulation($size);
     }
 
     #[Iterations(10)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchColdFixedSimulationMiddle(int $size): void
+    public function benchColdFixedSimulationMiddle(int $size): SplFixedArray
     {
-        $this->fixedSimulation($size);
+        return $this->fixedSimulation($size);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchWarmDynamicSimulationMiddle(int $size): void
+    public function benchWarmDynamicSimulationMiddle(int $size): array
     {
-        $this->dynamicSimulation($size);
+        return $this->dynamicSimulation($size);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["easy", "n-body-simulation"])]
     #[ParamProviders('middleProvider')]
-    public function benchWarmFixedSimulationMiddle(int $size): void
+    public function benchWarmFixedSimulationMiddle(int $size): SplFixedArray
     {
-        $this->fixedSimulation($size);
+        return $this->fixedSimulation($size);
     }
 
     #[Iterations(10)]
     #[Groups(["hard", "n-body-simulation"])]
     #[ParamProviders('hardProvider')]
-    public function benchColdDynamicSimulationHard(int $size): void
+    public function benchColdDynamicSimulationHard(int $size): array
     {
-        $this->dynamicSimulation($size);
+        return $this->dynamicSimulation($size);
     }
 
     #[Iterations(10)]
     #[Groups(["hard", "n-body-simulation"])]
     #[ParamProviders('hardProvider')]
-    public function benchColdFixedSimulationHard(int $size): void
+    public function benchColdFixedSimulationHard(int $size): SplFixedArray
     {
-        $this->fixedSimulation($size);
-    }
-
-    #[Iterations(10)]
-    #[Warmup(1_000)]
-    #[Groups(["hard", "n-body-simulation"])]
-    #[ParamProviders('hardProvider')]
-    public function benchWarmDynamicSimulationHard(int $size): void
-    {
-        $this->dynamicSimulation($size);
+        return $this->fixedSimulation($size);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["hard", "n-body-simulation"])]
     #[ParamProviders('hardProvider')]
-    public function benchWarmFixedSimulationHard(int $size): void
+    public function benchWarmDynamicSimulationHard(int $size): array
     {
-        $this->fixedSimulation($size);
+        return $this->dynamicSimulation($size);
+    }
+
+    #[Iterations(10)]
+    #[Warmup(1_000)]
+    #[Groups(["hard", "n-body-simulation"])]
+    #[ParamProviders('hardProvider')]
+    public function benchWarmFixedSimulationHard(int $size): SplFixedArray
+    {
+        return $this->fixedSimulation($size);
     }
 
     public function hardProvider(): array
@@ -95,15 +92,17 @@ class NBodiesSimulationBenchmark
         return $this->dataProvider(240, 144_000, 240);
     }
 
-    private function dynamicSimulation(int $size): void
+    private function dynamicSimulation(int $size): array
     {
-        $simulation           = new DynamicNBodiesSimulation($size);
-        $this->dynamic_result = $simulation->run();
+        $simulation = new DynamicNBodiesSimulation($size);
+
+        return $simulation->run();
     }
 
-    private function fixedSimulation(int $size): void
+    private function fixedSimulation(int $size): SplFixedArray
     {
-        $simulation         = new FixedNBodiesSimulation($size);
-        $this->fixed_result = $simulation->run();
+        $simulation = new FixedNBodiesSimulation($size);
+
+        return $simulation->run();
     }
 }

@@ -18,7 +18,7 @@ class GCNightmareBenchmark
     #[Iterations(10)]
     #[Groups(["easy", "gc-nightmare"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchColdGCNightmareEasy(int $size): void
+    public function benchColdGCNightmareEasy(int $size): array|object
     {
         for ($i = 0; $i < $size; $i++) {
             $arr          = [];
@@ -26,41 +26,45 @@ class GCNightmareBenchmark
 
             $this->result = $arr;
         }
+
+        return $this->result;
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["easy", "gc-nightmare"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchWarmGCNightmareEasy(int $size): void
+    public function benchWarmGCNightmareEasy(int $size): array|object
     {
-        $this->benchColdGCNightmareEasy($size);
+        return $this->benchColdGCNightmareEasy($size);
     }
 
     #[Iterations(10)]
     #[Groups(["middle", "gc-nightmare"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchColdGCNightmareMiddle(int $size): void
+    public function benchColdGCNightmareMiddle(int $size): array|object
     {
         for ($i = 0; $i < $size; $i++) {
             $this->result       = new StdClass();
             $this->result->test = "test";
         }
+
+        return $this->result;
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["middle", "gc-nightmare"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchWarmGCNightmareMiddle(int $size): void
+    public function benchWarmGCNightmareMiddle(int $size): array|object
     {
-        $this->benchColdGCNightmareMiddle($size);
+        return $this->benchColdGCNightmareMiddle($size);
     }
 
     #[Iterations(10)]
     #[Groups(["hard", "gc-nightmare"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchColdGCNightmareHard(int $size): void
+    public function benchColdGCNightmareHard(int $size): array|object
     {
         for ($i = 0; $i < $size; $i++) {
             $this->result              = new Node();
@@ -69,15 +73,17 @@ class GCNightmareBenchmark
             $this->result->right->left = $this->result;
             $this->result->left->right = $this->result->left;
         }
+
+        return $this->result;
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["hard", "gc-nightmare"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchWarmGCNightmareHard(int $size): void
+    public function benchWarmGCNightmareHard(int $size): array|object
     {
-        $this->benchColdGCNightmareHard($size);
+        return $this->benchColdGCNightmareHard($size);
     }
 
     public function defaultDataProvider(): array

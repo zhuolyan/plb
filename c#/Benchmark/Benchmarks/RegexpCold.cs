@@ -14,16 +14,18 @@ public class RegexpCold
     public int Size;
 
     [Benchmark]
-    public void Generated()
+    public Match Generated()
     {
-        string str    = new string('a', this.Size) + "b";
-        Match  result = PanicRegexp.Pattern().Match(str);
+        string str = new string('a', this.Size) + "b";
+
+        return PanicRegexp.Pattern().Match(str);
     }
 
     [Benchmark]
-    public void Classic()
+    public Match Classic()
     {
-        string str    = new string('a', this.Size) + "b";
-        Match  result = new Regex("/^(a+)+$/").Match(str);
+        string str = new string('a', this.Size) + "b";
+
+        return new Regex("/^(a+)+$/").Match(str);
     }
 }

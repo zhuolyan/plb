@@ -11,14 +11,14 @@ public class EratosthenesHardWarm
     public int Size;
 
     [Benchmark]
-    public void FixedSieve()
+    public int Fixed()
     {
-        new FixedSieve(this.Size).Sieve();
+        return new FixedSieve(this.Size).Sieve();
     }
 
     [Benchmark]
-    public void DynamicSieve()
+    public int Dynamic()
     {
-        new DynamicSieve(this.Size).Sieve();
+        return new DynamicSieve(this.Size).Sieve();
     }
 }

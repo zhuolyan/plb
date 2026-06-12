@@ -11,8 +11,8 @@ public class PiMonteCarloWarmEasy
     public int Size;
 
     [Benchmark]
-    public void Calculate()
+    public double Calculate()
     {
-        PiMonteCarlo.Calculate(this.Size);
+        return PiMonteCarlo.Calculate(this.Size);
     }
 }

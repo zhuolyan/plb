@@ -36,7 +36,7 @@ foreach ($beforeMethods as $beforeMethod) {
 // run warmup if required
 if ($warmup) {
     for ($i = 0; $i < $warmup; $i++) {
-        $benchmark->{{ subject }}($parameters['size']);
+        var_dump($benchmark->{{ subject }}($parameters['size']));
     }
 }
 
@@ -46,14 +46,14 @@ if ($parameters) {
     $startTime = microtime(true);
 
     for ($i = 0; $i < {{ revolutions }}; $i++) {
-        $benchmark->{{ subject }}($parameters['size']);
+        var_dump($benchmark->{{ subject }}($parameters['size']));
     }
     $endTime = microtime(true);
 } else {
     $startTime = microtime(true);
 
     for ($i = 0; $i < {{ revolutions }}; $i++) {
-        $benchmark->{{ subject }}();
+        var_dump($benchmark->{{ subject }}());
     }
     $endTime = microtime(true);
 }

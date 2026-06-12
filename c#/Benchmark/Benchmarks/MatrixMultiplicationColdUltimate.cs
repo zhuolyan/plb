@@ -16,18 +16,20 @@ public class MatrixMultiplicationColdUltimate
     public int Size;
 
     [Benchmark]
-    public void Fixed()
+    public FixedMatrix Fixed()
     {
         FixedMatrix first  = new(this.Size, true);
         FixedMatrix second = new(this.Size, true);
-        this.FixedResult = first.Multiplication(second);
+
+        return first.Multiplication(second);
     }
 
     [Benchmark]
-    public void Dynamic()
+    public DynamicMatrix Dynamic()
     {
         DynamicMatrix first  = new(this.Size, true);
         DynamicMatrix second = new(this.Size, true);
-        this.DynamicResult = first.Multiplication(second);
+
+        return first.Multiplication(second);
     }
 }

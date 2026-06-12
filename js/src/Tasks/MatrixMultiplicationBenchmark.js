@@ -26,72 +26,72 @@ export class MatrixMultiplicationBenchmark
 
     benchColdDynamicMatrixMultiplicationEasy(size)
     {
-        this.dynamicMatrixMultiplication(size);
+        return this.dynamicMatrixMultiplication(size);
     }
 
     benchColdFixedMatrixMultiplicationEasy(size)
     {
-        this.fixedMatrixMultiplication(size);
+        return this.fixedMatrixMultiplication(size);
     }
 
     benchWarmDynamicMatrixMultiplicationEasy(size)
     {
-        this.dynamicMatrixMultiplication(size);
+        return this.dynamicMatrixMultiplication(size);
     }
 
     benchWarmFixedMatrixMultiplicationEasy(size)
     {
-        this.fixedMatrixMultiplication(size);
+        return this.fixedMatrixMultiplication(size);
     }
 
     benchColdDynamicMatrixMultiplicationMiddle(size)
     {
-        this.dynamicMatrixMultiplication(size);
+        return this.dynamicMatrixMultiplication(size);
     }
 
     benchColdFixedMatrixMultiplicationMiddle(size)
     {
-        this.fixedMatrixMultiplication(size);
+        return this.fixedMatrixMultiplication(size);
     }
 
     benchWarmDynamicMatrixMultiplicationMiddle(size)
     {
-        this.dynamicMatrixMultiplication(size);
+        return this.dynamicMatrixMultiplication(size);
     }
 
     benchWarmFixedMatrixMultiplicationMiddle(size)
     {
-        this.fixedMatrixMultiplication(size);
+        return this.fixedMatrixMultiplication(size);
     }
 
     benchColdDynamicMatrixMultiplicationHard(size)
     {
-        this.dynamicMatrixMultiplication(size);
+        return this.dynamicMatrixMultiplication(size);
     }
 
     benchColdFixedMatrixMultiplicationHard(size)
     {
-        this.fixedMatrixMultiplication(size);
+        return this.fixedMatrixMultiplication(size);
     }
 
     benchWarmDynamicMatrixMultiplicationHard(size)
     {
-        this.dynamicMatrixMultiplication(size);
+        return this.dynamicMatrixMultiplication(size);
     }
 
     benchWarmFixedMatrixMultiplicationHard(size)
     {
-        this.fixedMatrixMultiplication(size);
+        return this.fixedMatrixMultiplication(size);
     }
 
     benchColdDynamicMatrixMultiplicationUltimate(size)
     {
-        this.dynamicMatrixMultiplication(size);
+        return this.dynamicMatrixMultiplication(size);
     }
 
     benchColdFixedMatrixMultiplicationUltimate(size)
     {
-        this.fixedMatrixMultiplication(size);
+        return this.fixedMatrixMultiplication(size);
     }
 
     dynamicMatrixMultiplication(size)
@@ -99,7 +99,7 @@ export class MatrixMultiplicationBenchmark
         const first  = new DynamicMatrix(size, true)
         const second = new DynamicMatrix(size, true)
 
-        first.multiplication(second);
+        return first.multiplication(second);
     }
 
     fixedMatrixMultiplication(size)
@@ -107,6 +107,6 @@ export class MatrixMultiplicationBenchmark
         const first  = new FixedMatrix(size, true)
         const second = new FixedMatrix(size, true)
 
-        first.multiplication(second);
+        return first.multiplication(second);
     }
 }

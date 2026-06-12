@@ -3,7 +3,6 @@ import {dataProvider} from "../helpers.js";
 export class RegexpBenchmark
 {
     static _PATTERN = /^(a+)+$/;
-    _result;
 
     static defaultDataProvider()
     {
@@ -14,11 +13,11 @@ export class RegexpBenchmark
     {
         const str = "a".repeat(size) + "b";
 
-        this._result = RegexpBenchmark._PATTERN.test(str);
+        return RegexpBenchmark._PATTERN.test(str);
     }
 
     benchWarm(size)
     {
-        this.benchCold(size);
+        return this.benchCold(size);
     }
 }

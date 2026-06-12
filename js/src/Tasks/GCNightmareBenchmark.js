@@ -17,11 +17,12 @@ export class GCNightmareBenchmark
             arr[`key${i}`] = i;
             this.result    = arr;
         }
+        return this.result;
     }
 
     benchWarmGCNightmareEasy(size)
     {
-        this.benchColdGCNightmareEasy(size);
+        return this.benchColdGCNightmareEasy(size);
     }
 
     benchColdGCNightmareMiddle(size)
@@ -30,11 +31,12 @@ export class GCNightmareBenchmark
             this.result      = {};
             this.result.test = "test";
         }
+        return this.result;
     }
 
     benchWarmGCNightmareMiddle(size)
     {
-        this.benchColdGCNightmareMiddle(size);
+        return this.benchColdGCNightmareMiddle(size);
     }
 
     benchColdGCNightmareHard(size)
@@ -46,10 +48,11 @@ export class GCNightmareBenchmark
             this.result.right.left = this.result;
             this.result.left.right = this.result.left;
         }
+        return this.result;
     }
 
     benchWarmGCNightmareHard(size)
     {
-        this.benchColdGCNightmareHard(size);
+        return this.benchColdGCNightmareHard(size);
     }
 }

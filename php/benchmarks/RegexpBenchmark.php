@@ -12,24 +12,24 @@ class RegexpBenchmark
     use DataProviderTrait;
 
     private const PATTERN = '/^(a+)+$/';
-    private int|false $result = false;
 
     #[Iterations(10)]
     #[Groups(["regexp"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchCold(int $size): void
+    public function benchCold(int $size): int|false
     {
-        $str          = str_repeat("a", $size) . "b";
-        $this->result = preg_match(self::PATTERN, $str);
+        $str = str_repeat("a", $size) . "b";
+
+        return preg_match(self::PATTERN, $str);
     }
 
     #[Iterations(10)]
     #[Warmup(1_000)]
     #[Groups(["regexp"])]
     #[ParamProviders('defaultDataProvider')]
-    public function benchWarm(int $size): void
+    public function benchWarm(int $size): int|false
     {
-        $this->benchCold($size);
+        return $this->benchCold($size);
     }
 
     public function defaultDataProvider(): array

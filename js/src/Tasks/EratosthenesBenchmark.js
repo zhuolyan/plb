@@ -22,63 +22,63 @@ export class EratosthenesBenchmark
     //easy
     benchColdFixedSieveEasy(size)
     {
-        new FixedSieve(size).sieve();
+        return new FixedSieve(size).sieve();
     }
 
     benchColdDynamicSieveEasy(size)
     {
-        new DynamicSieve(size).sieve();
+        return new DynamicSieve(size).sieve();
     }
 
     benchWarmFixedSieveEasy(size)
     {
-        new FixedSieve(size).sieve();
+        return  new FixedSieve(size).sieve();
     }
 
     benchWarmDynamicSieveEasy(size)
     {
-        new DynamicSieve(size).sieve();
+        return new DynamicSieve(size).sieve();
     }
 
     //midle
     benchColdFixedSieveMiddle(size)
     {
-        new FixedSieve(size).sieve();
+        return new FixedSieve(size).sieve();
     }
 
     benchColdDynamicSieveMiddle(size)
     {
-        new DynamicSieve(size).sieve();
+        return new DynamicSieve(size).sieve();
     }
 
     benchWarmFixedSieveMiddle(size)
     {
-        new FixedSieve(size).sieve();
+        return new FixedSieve(size).sieve();
     }
 
     benchWarmDynamicSieveMiddle(size)
     {
-        new DynamicSieve(size).sieve();
+        return new DynamicSieve(size).sieve();
     }
 
     //hard
     benchColdFixedSieveHard(size)
     {
-        new FixedSieve(size).sieve();
+        return new FixedSieve(size).sieve();
     }
 
     benchColdDynamicSieveHard(size)
     {
-        new DynamicSieve(size).sieve();
+        return new DynamicSieve(size).sieve();
     }
 
     benchWarmFixedSieveHard(size)
     {
-        new FixedSieve(size).sieve();
+        return new FixedSieve(size).sieve();
     }
 
     benchWarmDynamicSieveHard(size)
     {
-        new DynamicSieve(size).sieve();
+        return new DynamicSieve(size).sieve();
     }
 }
