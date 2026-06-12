@@ -12,6 +12,8 @@ public static class DataProvider
     public static IEnumerable<int> MatrixUltimate     => DataProvider.Generate(1_000, 5_000, 1_000);
     public static IEnumerable<int> NBodiesMiddle      => DataProvider.Generate(240, 144_000, 240);
     public static IEnumerable<int> NBodiesHard        => DataProvider.Generate(144_000, 1_584_000, 144_000);
+    public static IEnumerable<int> PiMonteCarloEasy   => DataProvider.Generate(1_000, 1_000_000, 1_000);
+    public static IEnumerable<int> PiMonteCarloHard   => DataProvider.Generate(1_000_000, 1_000_000_000, 1_000_000);
 
     public static IEnumerable<int> Generate(int start, int end, int step = 1)
     {

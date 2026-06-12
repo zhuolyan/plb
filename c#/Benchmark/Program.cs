@@ -45,3 +45,9 @@ BenchmarkRunner.Run<NBodySimulationColdMiddle>(config);
 BenchmarkRunner.Run<NBodySimulationColdHard>(config);
 BenchmarkRunner.Run<NBodySimulationWarmMiddle>(config);
 BenchmarkRunner.Run<NBodySimulationWarmHard>(config);
+
+// Pi by Monte-Carlo method.
+BenchmarkRunner.Run<PiMonteCarloColdEasy>(config);
+BenchmarkRunner.Run<PiMonteCarloColdHard>(config);
+BenchmarkRunner.Run<PiMonteCarloWarmEasy>(config);
+BenchmarkRunner.Run<PiMonteCarloWarmHard>(config);
