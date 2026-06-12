@@ -14,6 +14,7 @@ public static class DataProvider
     public static IEnumerable<int> NBodiesHard        => DataProvider.Generate(144_000, 1_584_000, 144_000);
     public static IEnumerable<int> PiMonteCarloEasy   => DataProvider.Generate(1_000, 1_000_000, 1_000);
     public static IEnumerable<int> PiMonteCarloHard   => DataProvider.Generate(1_000_000, 1_000_000_000, 1_000_000);
+    public static IEnumerable<int> Regexp             => DataProvider.Generate(255, 1000, 255);
 
     public static IEnumerable<int> Generate(int start, int end, int step = 1)
     {

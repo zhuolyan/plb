@@ -51,3 +51,7 @@ BenchmarkRunner.Run<PiMonteCarloColdEasy>(config);
 BenchmarkRunner.Run<PiMonteCarloColdHard>(config);
 BenchmarkRunner.Run<PiMonteCarloWarmEasy>(config);
 BenchmarkRunner.Run<PiMonteCarloWarmHard>(config);
+
+// Regexp
+BenchmarkRunner.Run<RegexpCold>(config);
+BenchmarkRunner.Run<RegexpWarm>(config);
