@@ -11,7 +11,7 @@ class RegexpBenchmark
 {
     use DataProviderTrait;
 
-    private const PATTERN = '/^(a+)+$/';
+    private const string PATTERN = '/^(a+)+$/';
 
     #[Iterations(10)]
     #[Groups(["regexp"])]
