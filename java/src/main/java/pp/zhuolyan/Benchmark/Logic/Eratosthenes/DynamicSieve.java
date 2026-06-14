@@ -5,18 +5,18 @@ import java.util.ArrayList;
 public class DynamicSieve
 {
     private final ArrayList<Boolean> isPrime;
-    private       int                size = 0;
+    private final int                size;
 
     public DynamicSieve(int size)
     {
         this.size    = size;
-        this.isPrime = new ArrayList<>(this.size + 1);
+        this.isPrime = new ArrayList<>();
     }
 
-    public int Sieve()
+    public int sieve()
     {
-        for (int i = 2; i <= this.size; i++) {
-            this.isPrime.set(i, true);
+        for (int i = 0; i <= this.size; i++) {
+            this.isPrime.add(true);
         }
 
         int limit = (int) Math.sqrt(this.size);

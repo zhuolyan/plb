@@ -2,21 +2,22 @@ package pp.zhuolyan.Benchmark.Logic.Eratosthenes;
 
 public class FixedSieve
 {
-    private       int       size = 0;
     private final boolean[] isPrime;
+    private final int       size;
+
     public FixedSieve(int size)
     {
-        this.size = size;
+        this.size    = size;
         this.isPrime = new boolean[this.size + 1];
     }
 
-    public int Sieve()
+    public int sieve()
     {
         for (int i = 2; i <= this.size; i++) {
             this.isPrime[i] = true;
         }
 
-        int limit = (int)Math.sqrt(this.size);
+        int limit = (int) Math.sqrt(this.size);
 
         for (int p = 2; p <= limit; p++) {
             // ReSharper disable once InvertIf

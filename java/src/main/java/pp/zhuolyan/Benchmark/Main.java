@@ -1,24 +1,22 @@
 package pp.zhuolyan.Benchmark;
 
-import org.openjdk.jmh.profile.GCProfiler;
-import org.openjdk.jmh.results.format.ResultFormatType;
-import org.openjdk.jmh.runner.Runner;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.openjdk.jmh.runner.options.VerboseMode;
+import pp.zhuolyan.Benchmark.Banchmarks.Eratosthenes;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main
 {
-    public static void main(String[] args) throws Exception {
-        Options opt = new OptionsBuilder()
-                .addProfiler(GCProfiler.class) // Автоматично додає GC метрики
-                .verbosity(VerboseMode.NORMAL)
-                .resultFormat(ResultFormatType.CSV)
-                .result("results.csv")
-                .build();
-
-        new Runner(opt).run();
+    public static void main(String[] args) throws Exception
+    {
+        // Eratosthenes
+        // easy
+        CustomRunner.runCold(Eratosthenes.class, 10, 60_000, 10, "Eratosthenes-easy");
+        CustomRunner.runWarm(Eratosthenes.class, 10, 60_000, 10, "Eratosthenes-easy");
+        // middle
+        CustomRunner.runCold(Eratosthenes.class, 60_010, 8_200_000, 20_000, "Eratosthenes-easy");
+        CustomRunner.runWarm(Eratosthenes.class, 60_010, 8_200_000, 20_000, "Eratosthenes-easy");
+        //hard
+        CustomRunner.runCold(Eratosthenes.class, 8_200_000, 1_000_000_000, 2_000_000, "Eratosthenes-easy");
+        CustomRunner.runWarm(Eratosthenes.class, 8_200_000, 1_000_000_000, 2_000_000, "Eratosthenes-easy");
     }
 }
