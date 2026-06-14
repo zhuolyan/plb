@@ -1,28 +1,31 @@
 package pp.zhuolyan.Benchmark.Logic.Eratosthenes;
 
-public class FixedSieve
+import java.util.ArrayList;
+
+public class DynamicSieve
 {
-    private       int       size = 0;
-    private final boolean[] isPrime;
-    public FixedSieve(int size)
+    private final ArrayList<Boolean> isPrime;
+    private       int                size = 0;
+
+    public DynamicSieve(int size)
     {
-        this.size = size;
-        this.isPrime = new boolean[this.size + 1];
+        this.size    = size;
+        this.isPrime = new ArrayList<>(this.size + 1);
     }
 
     public int Sieve()
     {
         for (int i = 2; i <= this.size; i++) {
-            this.isPrime[i] = true;
+            this.isPrime.set(i, true);
         }
 
-        int limit = (int)Math.sqrt(this.size);
+        int limit = (int) Math.sqrt(this.size);
 
         for (int p = 2; p <= limit; p++) {
             // ReSharper disable once InvertIf
-            if (this.isPrime[p]) {
+            if (this.isPrime.get(p)) {
                 for (int i = p * p; i <= this.size; i += p) {
-                    this.isPrime[i] = false;
+                    this.isPrime.set(i, false);
                 }
             }
         }
@@ -30,7 +33,7 @@ public class FixedSieve
         int count = 0;
 
         for (int i = 2; i <= this.size; i++) {
-            if (this.isPrime[i]) {
+            if (this.isPrime.get(i)) {
                 count++;
             }
         }
